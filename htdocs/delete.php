@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>商品削除</title>
+		<title>コメント削除</title>
 	</head>
 	<body>
 		<?php
@@ -10,7 +10,7 @@
 			require_once '_database_conf.php';
 			require_once '_h.php';
 
-			$pro_code=$_GET['procode'];
+			$id=$_GET['id'];
 
 			try
 			{
@@ -18,9 +18,9 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='DELETE FROM mst_product WHERE code = :code';
+				$sql='DELETE FROM comments WHERE id = :id';
 				$stmt=$db->prepare($sql);
-				$stmt->bindValue(':code', $pro_code, PDO::PARAM_INT);
+				$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 				$stmt->execute();
 
 				$db=null;

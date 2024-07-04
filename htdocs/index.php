@@ -1,108 +1,67 @@
-<?php
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "inventory_db";
-
-// データベース接続を作成
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// 接続をチェック
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// 文字セットをUTF-8に設定
-$conn->set_charset("utf8");
-?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>在庫状況確認</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>自動販売機在庫システム</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            text-align: center;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
         .container {
-            background-color: white;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        label {
-            font-size: 20px;
-            color: #555;
-            display: block;
-            margin-bottom: 10px;
-        }
-        select {
-            font-size: 18px;
-            padding: 10px;
-            margin-bottom: 20px;
             width: 100%;
-            max-width: 400px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        button {
-            font-size: 20px;
+        .header {
+            width: 100%;
+            background-color: #007BFF;
+            padding: 20px 0;
+        }
+        .header h1 {
             color: white;
-            background-color: #007bff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            margin: 0;
         }
-        button:hover {
-            background-color: #0056b3;
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .box {
+            border: 2px solid black;
+            padding: 20px;
+            width: 150px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .box:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+        a {
+            text-decoration: none;
+            color: black;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>在庫状況確認システム</h1>
-        <form action="check_stock.php" method="post">
-            <label for="product">商品名を選択してください：</label>
-            <select name="product" id="product">
-                <?php
-                $product_query = "SELECT code, name FROM mst_product";
-                $product_result = mysqli_query($conn, $product_query);
-
-                if (mysqli_num_rows($product_result) > 0) {
-                    while ($product_row = mysqli_fetch_assoc($product_result)) {
-                        echo '<option value="' . $product_row['code'] . '">' . htmlspecialchars($product_row['name'], ENT_QUOTES, 'UTF-8') . '</option>';
-                    }
-                }
-                ?>
-            </select>
-
-            <label for="vending_machine">自動販売機番号を選択してください：</label>
-            <select name="vending_machine" id="vending_machine">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <button type="submit">在庫状況確認</button>
-        </form>
+        <div class="header">
+            <h1>自動販売機在庫システム</h1>
+        </div>
+        <div class="main">
+            <div class="box"><a href="reviews.php">批評・閲覧</a></div>
+            <div class="box"><a href="touroku.php">商品登録・削除</a></div>
+            <div class="box"><a href="inventory.php">在庫状況</a></div>
+            <div class="box"><a href="e_money.php">電子マネー有無</a></div>
+        </div>
     </div>
 </body>
 </html>
-
-<?php
-mysqli_close($conn);
-?>
