@@ -1,8 +1,8 @@
 <?php
 $servername = "127.0.0.1";
-$username = "root";
+$username = "testuser";
 $password = "";
-$dbname = "product_reviews";
+$dbname = "mydb";
 
 // データベース接続を作成
 $conn = new mysqli($servername, $username, $password, $dbname);
