@@ -42,7 +42,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>在庫状況確認結果</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css">
     <style>
         body {
             font-family: Arial, sans-serif;
