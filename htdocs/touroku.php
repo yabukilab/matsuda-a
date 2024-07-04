@@ -3,7 +3,7 @@
 $servername = "127.0.0.1";
 $username = "testuser";
 $password = "pass";
-$dbname = "product_reviews";
+$dbname = "mydb";
 
 // データベース接続を作成
 $conn = new mysqli($servername, $username, $password, $dbname);
