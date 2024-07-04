@@ -9,8 +9,8 @@
     require_once '_database_conf.php';
     require_once '_h.php';
 
-    $pro_code = $_POST['pro_code'];
-    $comment_text = $_POST['text'];
+    $pro_code = $_GET['pro_code'];
+    $comment_text = $_GET['text'];
 
     try {
         $db = new PDO($dsn, $dbUser, $dbPass);

@@ -1,19 +1,19 @@
 <?php
-        require_once '_database_conf.php';
-        require_once '_h.php';
 
-        try {
-            $db = new PDO($dsn, $dbUser, $dbPass);
-            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$servername = "127.0.0.1";
+$username = "testuser";
+$password = "pass";
+$dbname = "mydb";
 
-            $sql = 'SELECT * FROM mst_product';
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
+// データベース接続を作成
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-            $db = null;
-        }
-            ?>
+// 接続をチェック
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
 <?php
 include '_database_conf.php';
 
