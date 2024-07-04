@@ -71,7 +71,7 @@
 
                 <label for="product-price">価格:</label>
                 <input type="number" id="product-price" name="product-price" required>
-                
+                '<br>';
                 <label for="product-stock">在庫:</label>
                 <input type="number" id="product-stock" name="product-stock" required>
 
