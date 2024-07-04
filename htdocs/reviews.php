@@ -26,13 +26,13 @@
             echo '<h1>商品批評・閲覧</h1>';
 
             echo '<form method="get" action="comment.php">';
-            echo 'コメント追加：番号';
+            echo 'コメント追加：ID';
             echo '<input type="text" name="procode" style="width:20px">';
             echo '<input type="submit" value="決定">';
             echo '</form>';
 
             echo '<form method="get" action="stock.php">';
-            echo '1つ在庫数を減らす：番号';
+            echo '1つ在庫数を減らす：ID';
             echo '<input type="text" name="procode" style="width:20px">';
             echo '<input type="submit" value="決定">';
             echo '</form>';
