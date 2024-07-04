@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2024-06-28 11:17:11
+-- 生成日時: 2024-07-04 08:14:52
 -- サーバのバージョン： 10.4.32-MariaDB
 -- PHP のバージョン: 8.2.12
 
@@ -18,8 +18,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- データベース: `inventory_db`
+-- データベース: `product_reviews`
 --
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `pro_code` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- テーブルのデータのダンプ `comments`
+--
+
+INSERT INTO `comments` (`id`, `pro_code`, `text`, `created_at`) VALUES
+(18, 65, 'あああああ', '2024-07-03 15:15:47');
 
 -- --------------------------------------------------------
 
@@ -108,6 +128,12 @@ INSERT INTO `mst_product` (`code`, `name`, `price`, `stock`, `number`) VALUES
 --
 
 --
+-- テーブルのインデックス `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- テーブルのインデックス `mst_product`
 --
 ALTER TABLE `mst_product`
@@ -118,10 +144,16 @@ ALTER TABLE `mst_product`
 --
 
 --
+-- テーブルの AUTO_INCREMENT `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- テーブルの AUTO_INCREMENT `mst_product`
 --
 ALTER TABLE `mst_product`
-  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
