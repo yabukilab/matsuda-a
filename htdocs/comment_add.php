@@ -17,11 +17,13 @@
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = 'INSERT INTO comments (pro_code, text) VALUES (:pro_code, :text)';
+        $sql = 'INSERT INTO comments (id, pro_code, text) VALUES (:id, :pro_code, :text)';
         $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT); // ここでidの値を指定
         $stmt->bindValue(':pro_code', $pro_code, PDO::PARAM_INT);
         $stmt->bindValue(':text', $comment_text, PDO::PARAM_STR);
         $stmt->execute();
+        
 
         $db = null;
 
