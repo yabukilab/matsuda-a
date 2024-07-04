@@ -60,7 +60,7 @@
             <div class="box"><a href="reviews.php">批評・閲覧</a></div>
             <div class="box"><a href="touroku.php">商品登録・削除</a></div>
             <div class="box"><a href="inventory.php">在庫状況</a></div>
-            <div class="box"><a href="e_money.php">電子マネー有無</a></div>
+            <div class="box"><a href="denshi.php">電子マネー有無</a></div>
         </div>
     </div>
 </body>
