@@ -47,12 +47,12 @@
             foreach ($results as $number => $group) {
                 // グループのヘッダーを表示
                 echo '<div class="group-box">';
-                echo '<h2>グループ: ' . h($number) . '</h2>';
+                echo '<h2>自販機番号: ' . h($number) . '</h2>';
 
                 // グループ内の各商品を表示
                 foreach ($group as $rec) {
                     echo '<div class="product-box">';
-                    echo '<p>番号: ' . h($rec['code']) . '</p>';
+                    echo '<p>ID: ' . h($rec['code']) . '</p>';
                     echo '<p>商品名: ' . h($rec['name']) . '</p>';
                     echo '<p>価格: ' . h($rec['price']) . '円</p>';
                     echo '</div>';
