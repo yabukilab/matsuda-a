@@ -1,27 +1,9 @@
-<?php
-$servername = "127.0.0.1";
-$username = "testuser";
-$password = "pass";
-$dbname = "mydb";
-
-// データベース接続を作成
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// 接続をチェック
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// 文字セットをUTF-8に設定
-$conn->set_charset("utf8");
-?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>在庫状況確認</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -80,13 +62,24 @@ $conn->set_charset("utf8");
             <label for="product">商品名を選択してください：</label>
             <select name="product" id="product">
                 <?php
-                $product_query = "SELECT code, name FROM mst_product";
-                $product_result = mysqli_query($conn, $product_query);
+                require_once '_database_conf.php';
 
-                if (mysqli_num_rows($product_result) > 0) {
-                    while ($product_row = mysqli_fetch_assoc($product_result)) {
-                        echo '<option value="' . $product_row['code'] . '">' . htmlspecialchars($product_row['name'], ENT_QUOTES, 'UTF-8') . '</option>';
+                try {
+                    $db = new PDO($dsn, $dbUser, $dbPass);
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    $product_query = "SELECT code, name FROM mst_product";
+                    $stmt = $db->prepare($product_query);
+                    $stmt->execute();
+
+                    while ($product_row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<option value="' . htmlspecialchars($product_row['code'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($product_row['name'], ENT_QUOTES, 'UTF-8') . '</option>';
                     }
+
+                    $db = null;
+                } catch (Exception $e) {
+                    echo 'エラーが発生しました。内容: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+                    exit();
                 }
                 ?>
             </select>
@@ -102,7 +95,3 @@ $conn->set_charset("utf8");
     </div>
 </body>
 </html>
-
-<?php
-mysqli_close($conn);
-?>
