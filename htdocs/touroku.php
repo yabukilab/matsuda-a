@@ -122,9 +122,8 @@
             </table>
         </div>
 
-        <div class="button-container">
-            <button onclick="history.back()">戻る</button>
-        </div>
+        <a href="index.php">TOPに戻る</a>
+
     </div>
 </body>
 </html>
