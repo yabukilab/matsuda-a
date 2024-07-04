@@ -2,7 +2,7 @@
 
 $servername = "127.0.0.1";
 $username = "testuser";
-$password = "";
+$password = "pass";
 $dbname = "mydb";
 
 // データベース接続を作成
