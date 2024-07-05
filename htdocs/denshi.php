@@ -80,6 +80,18 @@
                     <div class="vending-machine-number">自販機番号: 3</div>
                 </div>
                 <div class="vending-machine">
-                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120283
-
-
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120283.jpg" alt="自動販売機2">
+                    <div class="vending-machine-number">自販機番号: 2</div>
+                </div>
+            </div>
+            <a href="index.php" class="top-button">TOPへ戻る</a>
+        </div>
+        <div class="sidebar">
+            <h3>実装にあたっての注意事項</h3>
+            <ol>
+                <li>対応している電子マネーの内容も記載する</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
