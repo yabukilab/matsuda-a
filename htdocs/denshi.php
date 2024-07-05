@@ -66,16 +66,16 @@
             </div>
             <div class="vending-machines">
                 <div class="vending-machine">
-                    <img src="https://github.com/yabukilab/matsuda-a/blob/main/htdocs/S__33120280.jpg" alt="自動販売機1">
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120280.jpg" alt="自動販売機1">
                 </div>
                 <div class="vending-machine">
-                    <img src="https://github.com/yabukilab/matsuda-a/blob/main/htdocs/S__33120282.jpg" alt="自動販売機2">
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120282.jpg" alt="自動販売機2">
                 </div>
                 <div class="vending-machine">
-                    <img src="https://github.com/yabukilab/matsuda-a/blob/main/htdocs/S__33120283.jpg" alt="自動販売機3">
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120283.jpg" alt="自動販売機3">
                 </div>
             </div>
-            <a href="#" class="top-button">TOPへ戻る</a>
+            <a href="index.php" class="top-button">TOPへ戻る</a>
         </div>
         <div class="sidebar">
             <h3>実装にあたっての注意事項</h3>
@@ -86,4 +86,5 @@
     </div>
 </body>
 </html>
+
 
