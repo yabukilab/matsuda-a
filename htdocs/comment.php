@@ -76,7 +76,7 @@ try {
     echo 'エラーが発生しました。内容: ' . h($e->getMessage());
     exit();
 }				
-print '<br/>';
+print '<br>';
 print '<form method="get" action="delete.php">';
 print 'コメント削除：コメントID ';
 print '<input type="text" name="id" style="width:20px">';
