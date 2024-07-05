@@ -28,7 +28,7 @@
 
         if ($rec == false) {
             print '商品コードが正しくありません。';
-            print '<az href="index.php">戻る</a>';
+            print '<a href="index.php">戻る</a>';
             exit();
         }
 
