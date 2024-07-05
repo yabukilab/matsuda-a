@@ -75,7 +75,7 @@
                     <img src="https://github.com/yabukilab/matsuda-a/blob/main/htdocs/S__33120283.jpg" alt="自動販売機3">
                 </div>
             </div>
-            <a href="#" class="top-button">TOPへ戻る</a>
+            <a href="index.php">TOPに戻る</a>
         </div>
         <div class="sidebar">
             <h3>実装にあたっての注意事項</h3>
