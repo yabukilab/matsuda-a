@@ -16,11 +16,6 @@
             width: 75%;
             border: 1px solid #000;
         }
-        .sidebar {
-            width: 20%;
-            border: 1px solid #000;
-            padding: 10px;
-        }
         .header {
             background-color: #0078d4;
             color: #fff;
@@ -34,13 +29,13 @@
         }
         .vending-machine {
             width: 45%;
-            height: 300px;
             background-color: #d3d3d3;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            padding: 10px;
         }
         .vending-machine img {
             max-width: 100%;
@@ -66,6 +61,12 @@
             text-decoration: none;
             color: #000;
         }
+        .notice {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -76,22 +77,22 @@
             </div>
             <div class="vending-machines">
                 <div class="vending-machine">
-                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120280.jpg" alt="自動販売機3">
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/img1.jpg" alt="自動販売機3">
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/img2.jpg" alt="自動販売機3">
                     <div class="vending-machine-number">自販機番号: 3</div>
                 </div>
                 <div class="vending-machine">
-                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120283.jpg" alt="自動販売機2">
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/img3.jpg" alt="自動販売機2">
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/img4.jpg" alt="自動販売機2">
                     <div class="vending-machine-number">自販機番号: 2</div>
                 </div>
             </div>
             <a href="index.php" class="top-button">TOPへ戻る</a>
-        </div>
-        <div class="sidebar">
-            <h3>実装にあたっての注意事項</h3>
-            <ol>
-                <li>対応している電子マネーの内容も記載する</li>
-            </ol>
+            <div class="notice">
+                自動販売機１のmeigiは電子マネーが使えません。
+            </div>
         </div>
     </div>
 </body>
 </html>
+
