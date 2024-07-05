@@ -33,12 +33,26 @@
             padding: 20px;
         }
         .vending-machine {
-            width: 30%;
-            height: 150px;
+            width: 45%;
+            height: 300px;
             background-color: #d3d3d3;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        .vending-machine img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .vending-machine-number {
+            position: absolute;
+            bottom: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
         .top-button {
             display: block;
@@ -52,10 +66,6 @@
             text-decoration: none;
             color: #000;
         }
-        .vending-machine img {
-            max-width: 100%;
-            max-height: 100%;
-        }
     </style>
 </head>
 <body>
@@ -66,25 +76,10 @@
             </div>
             <div class="vending-machines">
                 <div class="vending-machine">
-                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120280.jpg" alt="自動販売機1">
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120280.jpg" alt="自動販売機3">
+                    <div class="vending-machine-number">自販機番号: 3</div>
                 </div>
                 <div class="vending-machine">
-                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120282.jpg" alt="自動販売機2">
-                </div>
-                <div class="vending-machine">
-                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120283.jpg" alt="自動販売機3">
-                </div>
-            </div>
-            <a href="index.php" class="top-button">TOPへ戻る</a>
-        </div>
-        <div class="sidebar">
-            <h3>実装にあたっての注意事項</h3>
-            <ol>
-                <li>対応している電子マネーの内容も記載する</li>
-            </ol>
-        </div>
-    </div>
-</body>
-</html>
+                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/S__33120283
 
 
