@@ -69,10 +69,10 @@
                     <img src="https://github.com/yabukilab/matsuda-a/blob/main/htdocs/S__33120280.jpg" alt="自動販売機1">
                 </div>
                 <div class="vending-machine">
-                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/img2.jpg" alt="自動販売機2">
+                    <img src="https://github.com/yabukilab/matsuda-a/blob/main/htdocs/S__33120282.jpg" alt="自動販売機2">
                 </div>
                 <div class="vending-machine">
-                    <img src="https://raw.githubusercontent.com/yabukilab/matsuda-a/main/htdocs/img3.jpg" alt="自動販売機3">
+                    <img src="https://github.com/yabukilab/matsuda-a/blob/main/htdocs/S__33120283.jpg" alt="自動販売機3">
                 </div>
             </div>
             <a href="#" class="top-button">TOPへ戻る</a>
@@ -86,3 +86,4 @@
     </div>
 </body>
 </html>
+
