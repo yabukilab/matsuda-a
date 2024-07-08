@@ -6,12 +6,9 @@ body {
     padding: 0;
 }
 
-
 .header {
-    background-color: blue;
-    color: white;
-    padding: 10px;
-    text-align: center;
+    background-color: #0078D7;
+    height: 40px;
 }
 
 .container {
