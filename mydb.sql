@@ -147,8 +147,7 @@ ALTER TABLE `mst_product`
 --
 -- テーブルの AUTO_INCREMENT `comments`
 --
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+ALTER TABLE `comments` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- テーブルの AUTO_INCREMENT `mst_product`
