@@ -72,6 +72,7 @@
         exit();
     }
     ?>
+
     <br />
     <form method="get" action="delete.php">
         コメント削除：コメントID
@@ -88,4 +89,3 @@
 </div>
 </body>
 </html>
-
