@@ -30,6 +30,7 @@
         if ($rec == false) {
             print '商品コードが正しくありません。';
             print '<a href="index.php">戻る</a>';
+            exit();
         }
 
         $db = null;
