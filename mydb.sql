@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2024-07-04 17:29:09
+-- 生成日時: 2024-07-08 18:41:39
 -- サーバのバージョン： 10.4.32-MariaDB
 -- PHP のバージョン: 8.2.12
 
@@ -40,7 +40,9 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`id`, `pro_code`, `text`, `created_at`) VALUES
 (18, 65, 'あああああ', '2024-07-03 15:15:47'),
-(19, 65, 'aa', '2024-07-04 15:17:33');
+(19, 65, 'aa', '2024-07-04 15:17:33'),
+(20, 65, 'ああああ', '2024-07-05 05:02:19'),
+(21, 65, '例', '2024-07-05 06:16:56');
 
 -- --------------------------------------------------------
 
@@ -148,7 +150,7 @@ ALTER TABLE `mst_product`
 -- テーブルの AUTO_INCREMENT `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- テーブルの AUTO_INCREMENT `mst_product`
