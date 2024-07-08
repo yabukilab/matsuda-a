@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="a.css">
 </head>
 <body>
-<div class="header">ヘッダー</div>
+<div class="header"></div>
 <div class="container">
     <?php
     require_once '_database_conf.php';
