@@ -28,8 +28,8 @@
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($rec == false) {
-            echo '商品コードが正しくありません。';
-            exit();
+            print '商品コードが正しくありません。';
+            print '<a href="index.php">戻る</a>';
         }
 
         $db = null;
