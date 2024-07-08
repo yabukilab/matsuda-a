@@ -64,23 +64,33 @@
         <h1>商品管理</h1>
 
         <div class="form-container">
-            <h2>商品登録</h2>
-            <form method="POST" action="">
-                <label for="product-name">商品名:</label>
-                <input type="text" id="product-name" name="product-name" required>
+    <h2>商品登録</h2>
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <label for="product-name">商品名:</label>
+        <input type="text" id="product-name" name="product-name" required>
 
-                <label for="product-price">価格:</label>
-                <input type="number" id="product-price" name="product-price" required>
-                <br>
-                <label for="product-stock">在庫:</label>
-                <input type="number" id="product-stock" name="product-stock" required>
+        <label for="product-price">価格:</label>
+        <input type="number" id="product-price" name="product-price" required>
+        <br>
+        <label for="product-stock">在庫:</label>
+        <input type="number" id="product-stock" name="product-stock" required>
 
-                <label for="product-number">番号:</label>
-                <input type="number" id="product-number" name="product-number" required>
+        <label for="product-number">番号:</label>
+        <input type="number" id="product-number" name="product-number" required>
 
-                <button type="submit" name="register">登録</button>
-            </form>
-        </div>
+        <button type="submit" name="register">登録</button>
+    </form>
+</div>
+
+<div class="form-container">
+    <h2>商品削除</h2>
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <label for="product-id">商品ID:</label>
+        <input type="number" id="product-id" name="product-id" required>
+
+        <button type="submit" name="delete">削除</button>
+    </form>
+</div>
 
         <div class="form-container">
             <h2>商品削除</h2>
