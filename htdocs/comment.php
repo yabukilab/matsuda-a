@@ -45,7 +45,7 @@
     <p>価格: <?php print h($rec['price']).'円'; ?></p>
 
     <form action="comment_add.php" method="post">
-        <textarea name="text" rows="4" cols="40" placeholder="コメントを入力してください"></textarea><br />
+        <textarea name="text" rows="4" cols="40" placeholder="コメントを入力してください"></textarea><br>
         <input type="hidden" name="pro_code" value="<?php print h($rec['code']); ?>">
         <input type="submit" value="コメントを投稿">
     </form>
@@ -73,7 +73,7 @@
     }
     ?>
 
-    <br />
+    <br>
     <form method="get" action="delete.php">
         コメント削除：コメントID 
         <input type="text" name="id" style="width:20px">
