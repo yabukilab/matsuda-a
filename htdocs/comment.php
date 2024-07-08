@@ -48,7 +48,7 @@
         <textarea name="text" rows="4" cols="40" placeholder="コメントを入力してください"></textarea><br>
         <input type="hidden" name="pro_code" value="<?php print h($rec['code']); ?>">
         <input type="submit" value="コメントを投稿">
-    </form>
+</br></form>
 
     <form>
         <input type="button" onclick="history.back()" value="戻る">
@@ -78,7 +78,7 @@
         コメント削除：コメントID 
         <input type="text" name="id" style="width:20px">
         <input type="submit" value="決定">
-    </form>
+        </br></form></br>
 
     <?php foreach ($recs as $rec): ?>
         <p>コメントID: <?php print h($rec['id']); ?></p>
