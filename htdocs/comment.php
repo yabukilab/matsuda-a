@@ -45,10 +45,10 @@
     <p>価格: <?php print h($rec['price']).'円'; ?></p>
 
     <form action="comment_add.php" method="post">
-        <textarea name="text" rows="4" cols="40" placeholder="コメントを入力してください"></textarea><br>
+        <textarea name="text" rows="4" cols="40" placeholder="コメントを入力してください"></textarea>
         <input type="hidden" name="pro_code" value="<?php print h($rec['code']); ?>">
         <input type="submit" value="コメントを投稿">
-</br></form>
+    </form>
 
     <form>
         <input type="button" onclick="history.back()" value="戻る">
@@ -73,12 +73,11 @@
     }
     ?>
 
-    <br>
     <form method="get" action="delete.php">
         コメント削除：コメントID 
         <input type="text" name="id" style="width:20px">
         <input type="submit" value="決定">
-        </br></form></br>
+    </form>
 
     <?php foreach ($recs as $rec): ?>
         <p>コメントID: <?php print h($rec['id']); ?></p>
