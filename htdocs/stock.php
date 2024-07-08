@@ -28,8 +28,8 @@
 
         if ($rec == false) {
             print '商品コードが正しくありません。';
-            print '<a href="index.php">戻る</a>';
-            exit();
+            print '<a href="index.php">戻る'exit();'</a>';
+           
         }
 
                 // 在庫数を減らす処理を追加
