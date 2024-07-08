@@ -65,7 +65,7 @@
 
         <div class="form-container">
             <h2>商品登録</h2>
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <label for="product-name">商品名:</label>
                 <input type="text" id="product-name" name="product-name" required>
 
@@ -84,7 +84,7 @@
 
         <div class="form-container">
             <h2>商品削除</h2>
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <label for="product-id">商品ID:</label>
                 <input type="number" id="product-id" name="product-id" required>
 
