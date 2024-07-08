@@ -7,8 +7,7 @@
 </head>
 <body>
 <div class="header"></div>
-<div class="container"></div>
-<div>
+<div class="container">
     <?php
     require_once '_database_conf.php';
     require_once '_h.php';
