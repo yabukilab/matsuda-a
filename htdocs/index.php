@@ -49,6 +49,16 @@
             text-decoration: none;
             color: black;
         }
+        .notes {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            width: 80%;
+            text-align: left;
+        }
+        .notes p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +71,12 @@
             <div class="box"><a href="touroku.php">商品登録・削除</a></div>
             <div class="box"><a href="inventory.php">在庫状況</a></div>
             <div class="box"><a href="denshi.php">電子マネー有無</a></div>
+        </div>
+        <div class="notes">
+            <p>注意書き:</p>
+            <p>自動販売機１はMeiji</p>
+            <p>自動販売機２はコカ・コーラ</p>
+            <p>自動販売機３はSuntory</p>
         </div>
     </div>
 </body>
