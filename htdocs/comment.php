@@ -32,6 +32,7 @@
             print '<a href="index.php">戻る</a>';
             exit();
         }
+        
 
         $db = null;
     } catch (Exception $e) {
