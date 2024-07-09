@@ -32,7 +32,6 @@
             print '<a href="index.php">戻る</a>';
             exit();
         }
-        
 
         $db = null;
     } catch (Exception $e) {
@@ -55,46 +54,39 @@
     <form>
         <input type="button" onclick="history.back()" value="戻る">
     </form>
+    
     <?php
-require_once '_database_conf.php';
-require_once '_h.php';
+    try {
+        $db = new PDO($dsn, $dbUser, $dbPass);
+        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$pro_code = $_GET['procode'];
+        $sql = 'SELECT * FROM comments WHERE pro_code = :pro_code';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':pro_code', $pro_code, PDO::PARAM_INT);
+        $stmt->execute();
 
-try {
-    $db = new PDO($dsn, $dbUser, $dbPass);
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $recs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql = 'SELECT * FROM comments WHERE pro_code = :pro_code';
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(':pro_code', $pro_code, PDO::PARAM_INT);
-    $stmt->execute();
+    } catch (Exception $e) {
+        echo 'エラーが発生しました。内容: ' . h($e->getMessage());
+        exit();
+    }
+    
+    print '<br />';
+    print '<form method="get" action="delete.php">';
+    print 'コメント削除：コメントID ';
+    print '<input type="text" name="id" style="width:20px">';
+    print '<input type="submit" value="決定">';
+    print '</form>';
+    ?>
 
-    $recs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-} catch (Exception $e) {
-    echo 'エラーが発生しました。内容: ' . h($e->getMessage());
-    exit();
-}				
-print '<br />';
-print '<form method="get" action="delete.php">';
-print 'コメント削除：コメントID ';
-print '<input type="text" name="id" style="width:20px">';
-print '<input type="submit" value="決定">';
-print '</form>';
-
-
-
-?>
-
-<?php foreach ($recs as $rec): ?>
-    <p>コメントID: <?php print h($rec['id']); ?></p>
-    <p>コメント: <?php print h($rec['text']); ?></p>
-    <p>投稿日: <?php print h($rec['created_at']); ?></p>
-    <hr>
-<?php endforeach; ?>
+    <?php foreach ($recs as $rec): ?>
+        <p>コメントID: <?php print h($rec['id']); ?></p>
+        <p>コメント: <?php print h($rec['text']); ?></p>
+        <p>投稿日: <?php print h($rec['created_at']); ?></p>
+        <hr>
+    <?php endforeach; ?>
 
 </div>
 </body>
