@@ -29,34 +29,43 @@
         if ($rec == false) {
             print '商品コードが正しくありません。';
             print '<a href="index.php">戻る</a>';
+            print '</div>';
+            print '</body>';
+            print '</html>';
             exit();
         }
 
-                // 在庫数を減らす処理を追加
-                $quantity = 1; // 減らしたい在庫数
-                $currentStock = $rec['stock'];
-        
-                if ($currentStock >= $quantity) {
-                    $newStock = $currentStock - $quantity;
-                    $updateSql = 'UPDATE mst_product SET stock = :stock WHERE code = :code';
-                    $updateStmt = $db->prepare($updateSql);
-                    $updateStmt->bindValue(':stock', $newStock, PDO::PARAM_INT);
-                    $updateStmt->bindValue(':code', $pro_code, PDO::PARAM_INT);
-                    $updateStmt->execute();
-        
-                    echo '在庫数が更新されました。';
-                    $rec['stock'] = $newStock; // 更新後の在庫数を設定
-                } else {
-                    echo '在庫が不足しています。';
-                }
+        // 在庫数を減らす処理を追加
+        $quantity = 1; // 減らしたい在庫数
+        $currentStock = $rec['stock'];
+
+        if ($currentStock >= $quantity) {
+            $newStock = $currentStock - $quantity;
+            $updateSql = 'UPDATE mst_product SET stock = :stock WHERE code = :code';
+            $updateStmt = $db->prepare($updateSql);
+            $updateStmt->bindValue(':stock', $newStock, PDO::PARAM_INT);
+            $updateStmt->bindValue(':code', $pro_code, PDO::PARAM_INT);
+            $updateStmt->execute();
+
+            echo '在庫数が更新されました。';
+            $rec['stock'] = $newStock; // 更新後の在庫数を設定
+        } else {
+            echo '在庫が不足しています。';
+            print '<a href="index.php">戻る</a>';
+            print '</div>';
+            print '</body>';
+            print '</html>';
+            exit();
+        }
 
         $db = null;
     } catch (Exception $e) {
         echo 'エラーが発生しました。内容: ' . h($e->getMessage());
+        print '</div>';
+        print '</body>';
+        print '</html>';
         exit();
     }
-
-    
     ?>
 
     <h2>商品表示</h2>
@@ -67,6 +76,6 @@
 
     <a href="index.php">TOPに戻る</a>
 
-    </div>
+</div>
 </body>
 </html>
