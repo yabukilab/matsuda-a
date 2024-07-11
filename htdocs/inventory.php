@@ -84,12 +84,6 @@
                 ?>
             </select>
 
-            <label for="vending_machine">自動販売機番号を選択してください：</label>
-            <select name="vending_machine" id="vending_machine">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
             <button type="submit">在庫状況確認</button>
         </form>
     </div>
