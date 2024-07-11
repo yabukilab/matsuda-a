@@ -33,7 +33,7 @@
                     $stmt->bindParam(':number', $number);
                     $stmt->execute();
 
-                    echo "New product created successfully";
+                    echo "新しい商品が正常に登録されました";
                 }
 
                 if (isset($_POST['delete'])) {
@@ -44,7 +44,7 @@
                     $stmt->bindParam(':code', $code);
                     $stmt->execute();
 
-                    echo "Product deleted successfully";
+                    echo "商品が正常に削除されました";
                 }
             }
 
@@ -94,6 +94,9 @@
 
         <div class="product-list">
             <h2>商品一覧</h2>
+            <div class="product-numbers">
+                番号１：meigi　番号２：コカ・コーラ　番号３：Suntory
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -116,7 +119,7 @@
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <tr><td colspan="5">No products found</td></tr>
+                        <tr><td colspan="5">商品が見つかりません</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>
