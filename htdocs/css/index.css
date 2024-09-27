@@ -1,0 +1,7 @@
+*{margin: 0; padding: 0;}
+
+/*注釈の設定*/
+div.annotation{
+    padding: 0 0 0 5%;
+    background: #2abbbb;
+}
