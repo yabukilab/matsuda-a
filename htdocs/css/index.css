@@ -1,7 +1,28 @@
-*{margin: 0; padding: 0;}
+*{margin:0;padding:0}
+
+body{
+    background: #f5fffa
+}
+
+/*ヘッダーの設定*/
+div.header{
+    margin: 25px;
+    height: 100px;
+    outline: auto 1px #000;
+    display: flex;
+    align-items: center;        /*上下中央揃え*/
+    justify-content: center;    /*左右中央揃え*/
+}
+
+div.content{
+    margin: 25px 10%;           /*上下，左右*/
+    padding: 3% 5%;
+    outline: dashed 1px #dda0dd;
+}
 
 /*注釈の設定*/
 div.annotation{
-    padding: 0 0 0 5%;
+    padding: 1% 3% 1% 0;
     background: #2abbbb;
+    text-align: right;
 }
