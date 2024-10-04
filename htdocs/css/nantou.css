@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdf0db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*height: 100%;*/
+}
+
+/* コンテナ全体 */
+.container {
+    position: relative;
+    width: 800px;
+    height: 100%;
+}
+
+/* 上部の円形アイコン */
+.top-icons {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #a3c4a6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.text-circle {
+    color: #517c5b;
+    font-size: 24px;
+}
+
+/* コンテンツ全体のレイアウト */
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    height: 100%;
+    position: relative;
+    margin-top: 80px; /* 円形アイコンの下にスペースを追加 */
+}
+
+/* 左側のボックス */
+.left-side, .right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.left-side {
+    /*width: 480px;*/
+    display: flex;
+}
+
+.right-side {
+    /*width: 240px;*/
+    display: flex;
+}
+
+/* ボックスのデザイン */
+.box {
+    margin: 1% 0 1% 3%;
+    width: 360px;
+    height: 200px;
+    border: 2px solid #a97b5d;
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.small-box {
+    height: 100px;
+}
+
+.time {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    color: #a97b5d;
+}
+
+/* 中央の縦線 */
+.center-line {
+    width: 20px;
+    height: 100%;
+    background-color: #7b5e47;
+    position: absolute;
+    left: 50%;
+}
+
+/* 横軸のデザイン（ボックスから中央線まで伸びる線） */
+.horizontal-line {
+    position: absolute;
+    top: 1%;
+    left: 100%;
+    width: 40px;
+    height: 15px;
+    background-color: #7b5e47;
+}
+
+.right-side .box .horizontal-line {
+    left: -42px;
+}
