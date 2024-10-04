@@ -12,12 +12,14 @@ div.header{
     display: flex;
     align-items: center;        /*上下中央揃え*/
     justify-content: center;    /*左右中央揃え*/
+    font-size: 40px;
 }
 
 div.content{
     margin: 25px 10%;           /*上下，左右*/
     padding: 3% 5%;
     outline: dashed 1px #dda0dd;
+    font-size: 25px;
 }
 
 /*注釈の設定*/
