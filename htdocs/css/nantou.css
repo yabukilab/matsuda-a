@@ -10,14 +10,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /*height: 100%;*/
 }
 
 /* コンテナ全体 */
 .container {
-    position: relative;
-    width: 800px;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 /* 上部の円形アイコン */
@@ -48,45 +48,68 @@ body {
 
 /* コンテンツ全体のレイアウト */
 .content {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    height: 100%;
     position: relative;
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 80px; /* 円形アイコンの下にスペースを追加 */
 }
 
-/* 左側のボックス */
+/* 左右のボックス */
 .left-side, .right-side {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    margin: 0 5% 0 5%;
 }
 
 .left-side {
-    /*width: 480px;*/
-    display: flex;
+    /*display: flex;*/
+    margin-right: auto;
+    transform: translateX(-12%);
 }
 
 .right-side {
-    /*width: 240px;*/
-    display: flex;
+    /*display: flex;*/
+    margin-right: auto;
 }
 
 /* ボックスのデザイン */
 .box {
-    margin: 1% 0 1% 3%;
-    width: 360px;
-    height: 200px;
-    border: 2px solid #a97b5d;
     position: relative;
+    margin: 30px 0;
+    width: 360px;
+    min-height: 200px;
+    border: 2px solid #a97b5d;
     background-color: #fff;
     display: flex;
+    justify-content: center;
     align-items: center;
+    padding: 10px;
+    flex-direction: column;
 }
 
-.small-box {
-    height: 100px;
+.box-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+}
+
+.box-image {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.box-text {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .time {
@@ -99,11 +122,13 @@ body {
 
 /* 中央の縦線 */
 .center-line {
-    width: 20px;
-    height: 100%;
-    background-color: #7b5e47;
     position: absolute;
     left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background-color: #7b5e47;
+    transform: translateX(-50%);
 }
 
 /* 横軸のデザイン（ボックスから中央線まで伸びる線） */
@@ -118,4 +143,29 @@ body {
 
 .right-side .box .horizontal-line {
     left: -42px;
+}
+
+@media (max-width: 768px) {
+    .box {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .left-side, .right-side {
+        transform: translateX(0);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .center-line {
+        left: 50%;
+    }
+
+    .horizontal-line {
+        display: none;
+    }
+
+    .box-image {
+        max-width: 80px;
+    }
 }
