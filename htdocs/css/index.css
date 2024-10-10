@@ -1,30 +1,41 @@
-*{margin:0;padding:0}
-
-body{
-    background: #f5fffa
-}
-
-/*ヘッダーの設定*/
-div.header{
-    margin: 25px;
-    height: 100px;
-    outline: auto 1px #000;
+body {
+    background-color: #d9e8d0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #a9c7a0;
+  }
+  
+  .header {
+    text-align: center;
+    color: #d35b53;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 0;
+  }
+  
+  .sub-header {
+    text-align: center;
+    color: #d35b53;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .content {
     display: flex;
-    align-items: center;        /*上下中央揃え*/
-    justify-content: center;    /*左右中央揃え*/
-    font-size: 40px;
-}
-
-div.content{
-    margin: 25px 10%;           /*上下，左右*/
-    padding: 3% 5%;
-    outline: dashed 1px #dda0dd;
-    font-size: 25px;
-}
-
-/*注釈の設定*/
-div.annotation{
-    padding: 1% 3% 1% 0;
-    background: #2abbbb;
-    text-align: right;
-}
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .box {
+    border: 2px solid #a9c7a0;
+    padding: 20px;
+    height: 200px; /* コンテンツに合わせて高さを調整 */
+    background-color: #ffffff;
+  }
+  
