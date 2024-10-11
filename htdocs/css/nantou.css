@@ -66,21 +66,20 @@ body {
 }
 
 .left-side {
-    /*display: flex;*/
     margin-right: auto;
-    transform: translateX(-12%);
+    transform: translateX(-8%);
 }
 
 .right-side {
-    /*display: flex;*/
     margin-right: auto;
+    transform: translateX(-2%);
 }
 
 /* ボックスのデザイン */
 .box {
     position: relative;
     margin: 30px 0;
-    width: 360px;
+    width: 600px;
     min-height: 200px;
     border: 2px solid #a97b5d;
     background-color: #fff;
@@ -99,12 +98,14 @@ body {
     width: 95%;
 }
 
+/*箱の中の画像*/
 .box-image {
     max-width: 230px;
     height: auto;
     margin: 10px 0;
 }
 
+/*箱の中の文章*/
 .box-text {
     font-size: 1rem;
     color: #333;
@@ -112,6 +113,7 @@ body {
     word-wrap: break-word;
 }
 
+/*コメントエリアのデザイン*/
 .box-comment {
     display: flex;
     flex-direction: row;
@@ -123,6 +125,7 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/*コメントする人のアイコン*/
 .comment-image {
     max-width: 80px;
     height: auto;
@@ -130,6 +133,7 @@ body {
     display: block;
 }
 
+/*コメントの文章*/
 .comment-text {
     font-size: 1rem;
     color: #333;
@@ -141,7 +145,7 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 18px;
+    font-size: 23px;
     color: #a97b5d;
 }
 
