@@ -99,10 +99,16 @@ body {
 }
 
 /*箱の中の画像*/
+.box-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .box-image {
-    max-width: 230px;
+    max-width: 200px;
     height: auto;
-    margin: 10px 0;
+    margin: 10px;
 }
 
 /*箱の中の文章*/
