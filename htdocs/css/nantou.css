@@ -98,17 +98,19 @@ body {
     width: 95%;
 }
 
-/*箱の中の画像*/
+/*画像を横並びにする*/
 .box-area {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
+/*箱の中の画像*/
 .box-image {
     max-width: 200px;
     height: auto;
     margin: 10px;
+    cursor: pointer;
 }
 
 /*箱の中の文章*/
@@ -178,6 +180,27 @@ body {
 
 .right-side .box .horizontal-line {
     left: -42px;
+}
+
+#zoomback {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    display: none;  /*初期状態では非表示*/
+}
+
+#zooming {
+    width: 30%;
 }
 
 @media (max-width: 768px) {
