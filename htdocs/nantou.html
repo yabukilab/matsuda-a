@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/nantou.css">
+    <script src="pic.js" defer></script>
     <title>nantou</title>
 </head>
 <body>
@@ -27,17 +28,18 @@
                     <div class="horizontal-line"></div>
                     <div class="box-content">
                         <img src="./items/kent/18642_color.png" alt="Image" class="box-image">
-                        <p class="box-text">ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
+                        <p class="box-text">テキストテキストテキスト</p>
                     </div>
                     <div class="box-comment">
                         <img src="./items/kent/18642_color.png" alt="woman" class="comment-image">
-                        <p class="comment-text">テストテストテストテストテストテストテストテスト</p>
+                        <p class="comment-text">コメントテキスト</p>
                     </div>
                 </div>
                 <div class="box">
                     <span class="time">00:00</span>
                     <div class="horizontal-line"></div>
                     <div class="box-content">
+                        <!-- デフォルトの画像（src が空の場合） -->
                         <img src="./items/kent/IMG_1413.JPG" alt="Image" class="box-image">
                         <p class="box-text">コメダ</p>
                     </div>
@@ -46,7 +48,8 @@
                     <span class="time">00:00</span>
                     <div class="horizontal-line"></div>
                     <div class="box-content">
-                        <img src="your-image.jpg" alt="Image" class="box-image">
+                        <!-- src が空であればデフォルト画像が表示されるように修正 -->
+                        <img src="your-image.jpg" alt="Image" class="box-image" onerror="handleImageError(this)">
                         <p class="box-text">example</p>
                     </div>
                 </div>
@@ -61,7 +64,7 @@
                     <span class="time">00:00</span>
                     <div class="horizontal-line"></div>
                     <div class="box-content">
-                        <img src="your-image.jpg" alt="Image" class="box-image">
+                        <img src="your-image.jpg" alt="Image" class="box-image" onerror="handleImageError(this)">
                         <p class="box-text">example</p>
                     </div>
                 </div>
@@ -69,7 +72,7 @@
                     <span class="time">00:00</span>
                     <div class="horizontal-line"></div>
                     <div class="box-content">
-                        <img src="your-image.jpg" alt="Image" class="box-image">
+                        <img src="your-image.jpg" alt="Image" class="box-image" onerror="handleImageError(this)">
                         <p class="box-text">example</p>
                     </div>
                 </div>
@@ -77,10 +80,14 @@
                     <span class="time">00:00</span>
                     <div class="horizontal-line"></div>
                     <div class="box-content">
-                        <img src="your-image.jpg" alt="Image" class="box-image">
+                        <img src="your-image.jpg" alt="Image" class="box-image" onerror="handleImageError(this)">
                         <p class="box-text">example</p>
                     </div>
                 </div>
+            </div>
+            <div id="zoomback">
+                <!-- 初期状態ではデフォルト画像 -->
+                <img id="zooming" src="./items/placeholder.png" alt="zoom-test">
             </div>
         </div>
     </div>
