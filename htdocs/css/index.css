@@ -10,11 +10,7 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #d9e8d8; /* 淡い緑色の背景 */
     background-image: repeating-linear-gradient(
-        to right, /* 縦方向に線を引く */
-        #8B4513, /* 茶色の線 */
-        #8B4513 2px, /* 線の太さを1pxに指定 */
-        transparent 1px, /* 線と線の間を透明にする */
-        transparent 100px /* 線の間隔を50pxにする */
+
     );
     background-size: 100% 100%; /* 縦に等間隔で10本の線を描画 */
     display: flex;
