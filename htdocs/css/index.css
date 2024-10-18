@@ -9,9 +9,6 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #d9e8d8; /* 淡い緑色の背景 */
-    background-image: repeating-linear-gradient(
-
-    );
     background-size: 100% 100%; /* 縦に等間隔で10本の線を描画 */
     display: flex;
     justify-content: center;
