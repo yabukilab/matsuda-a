@@ -30,7 +30,12 @@ body {
 }
 
 .siteTitle {
-    margin: 0;
+    margin: 5px 0 0 0;
+    
+}
+
+.visited:visited {
+    color: #000;
 }
 
 /* ナビゲーション */
@@ -154,7 +159,7 @@ body {
 /* 上部の円形アイコン */
 .top-icons {
     position: absolute;
-    top: 20px;
+    top: 100px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -162,8 +167,8 @@ body {
 }
 
 .circle {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 2px solid #a3c4a6;
     display: flex;
@@ -174,7 +179,7 @@ body {
 
 .text-circle {
     color: #517c5b;
-    font-size: 24px;
+    font-size: 28px;
 }
 
 /* コンテンツ全体のレイアウト */
@@ -185,7 +190,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 80px; /* 円形アイコンの下にスペースを追加 */
+    margin-top: 180px; /* 円形アイコンの下にスペースを追加 */
 }
 
 /* 左右のボックス */

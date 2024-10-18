@@ -25,6 +25,131 @@ body {
     color: black;
 }
 
+/* ハンバーガーメニュー */
+.header {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 60px;
+    z-index: 10;
+}
+
+.headerNavOuter {
+    margin-bottom: 0;
+    position: relative;
+}
+
+/* ナビゲーション */
+.headerNav {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    padding-top: 40px;
+    background-color: #ffdab9;
+    transition: all .6s;
+    z-index: 20;
+    overflow-y: auto;
+}
+
+.navList {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: block;
+}
+
+.navItem {
+    padding: 1rem 1rem 0;
+}
+
+.navItem a {
+    display: block;
+    border-bottom: 1px solid #eee;
+    color: #707070;
+    padding: 4rem 0 1rem;
+    width: 100%;
+    margin: 0 auto;
+}
+/* ナビゲーションここまで */
+
+/* ハンバーガーボタン */
+.hamburger-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    z-index: 30;
+}
+
+.hamburger-line {
+    position: absolute;
+    left: 8px;
+    width: 25px;
+    height: 1px;
+    background-color: #111;
+    transition: all .6s;
+}
+
+.hamburger-line-1 {
+    top: 20px;
+}
+
+.hamburger-line-2 {
+    top: 26px;
+}
+
+.hamburger-line-3 {
+    top: 32px;
+}
+/* ハンバーガーボタンここまで */
+
+/* ハンバーガーメニューをクリックしたあとに現れる半透明背景 */
+.bg {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background-color: #000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .6s;
+    cursor: pointer;
+}
+
+/* ハンバーガーボタンをクリックしたときの動作 */
+/* ナビゲーションが現れる */
+.nav-open .headerNav {
+    right: 0;
+}
+
+/* 半透明背景を表示 */
+.nav-open .bg {
+    opacity: .8;
+    visibility: visible;
+}
+
+/* ハンバーガーをバツに */
+.nav-open .hamburger-line-1 {
+    transform: rotate(45deg);
+    top: 25px;
+}
+.nav-open .hamburger-line-2 {
+    width: 0;
+    left: 50%;
+}
+.nav-open .hamburger-line-3 {
+    transform: rotate(-45deg);
+    top: 25px;
+}
+
 /* コンテナ全体の設定 */
 .container {
     width: 100%;
@@ -39,19 +164,19 @@ body {
 }
 
 /* ヘッダーの設定 */
-.header {
+.title {
     text-align: center;
     color: #d23f42; /* ヘッダーの赤色文字 */
     margin-bottom: 20px;
 }
 
-.header h1 {
+.title h1 {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.header h2 {
+.title h2 {
     font-size: 22px;
 }
 

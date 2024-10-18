@@ -1,89 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/nantou.css">
+    <script src="pic.js" defer></script>
     <title>nantou</title>
 </head>
 <body>
-    <div class="container">
-        <!-- 上部の円形アイコン -->
-        <div class="top-icons">
-            <div class="circle text-circle">駅</div>
-            <div class="circle text-circle">南</div>
-            <div class="circle text-circle">西</div>
-            <div class="circle text-circle">エ</div>
-            <div class="circle text-circle">リ</div>
-            <div class="circle text-circle">ア</div>
+    <header class="header">
+        <div class="headerNavOuter">
+            <h1 class="siteTitle">
+                <a class="visited" href="./index.html" style="text-decoration-line: none">【津田沼】に住む！</a>
+            </h1>
+
+            <!-- ナビゲーション -->
+            <nav class="headerNav">
+                <ul class="navList">
+                    <li class="navItem">
+                        <a href="./index.html">TOP</a>
+                    </li>
+                    <li class="navItem">
+                        <a href="./ekikita.html">駅北エリア</a>
+                    </li>
+                    <li class="navItem">
+                        <a href="./nannsei.html">駅南西エリア</a>
+                    </li>
+                    <li class="navItem">
+                        <a href="./nantou.html">駅南東エリア</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- ハンバーガーボタン -->
+            <div class="hamburger-button" id="hamburger">
+                <span class="hamburger-line hamburger-line-1"></span>
+                <span class="hamburger-line hamburger-line-2"></span>
+                <span class="hamburger-line hamburger-line-3"></span>
+            </div>
+
+            <!-- ハンバーガーボタンをクリックした後に現れる半透明背景 -->
+            <div class="bg" id="bg"></div>
         </div>
 
-        <!-- レイアウト全体 -->
-        <div class="content">
-            <!-- 左側のボックス -->
-            <div class="left-side">
-                <div class="box">
-                    <div class="time">10:00</div>
-                    <div class="horizontal-line"></div>
-                    <div class="box-content">
-                        <img src="./items/mina/公園.jpg" alt="Image" class="box-image">
-                        <img src="./items/mina/公園２.jpg" alt="Image" class="box-image">
-                        <p class="box-text">広々した公園で朝の運動！明るい時間は子供から大人までたくさんの人が公園を利用しています。</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <span class="time">00:00</span>
-                    <div class="horizontal-line"></div>
-                    <div class="box-content">
-                        <div class="box-area">
-                            <img src="./items/mina/パン屋外.jpg" alt="pancake" class="box-image">
-                            <img src="./items/mina/パン屋中.jpg" alt="pancake" class="box-image">
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- 上部の円形アイコン -->
+            <div class="top-icons">
+                <div class="circle text-circle">駅</div>
+                <div class="circle text-circle">南</div>
+                <div class="circle text-circle">西</div>
+                <div class="circle text-circle">エ</div>
+                <div class="circle text-circle">リ</div>
+                <div class="circle text-circle">ア</div>
+            </div>
+
+            <!-- レイアウト全体 -->
+            <div class="content">
+                <!-- 左側のボックス -->
+                <div class="left-side">
+                    <div class="box">
+                        <div class="time">10:00</div>
+                        <div class="horizontal-line"></div>
+                        <div class="box-content">
+                            <img src="./items/mina/公園.jpg" alt="Image" class="box-image">
+                            <img src="./items/mina/公園２.jpg" alt="Image" class="box-image">
+                            <p class="box-text">広々した公園で朝の運動！明るい時間は子供から大人までたくさんの人が公園を利用しています。</p>
                         </div>
-                        <p class="box-text">おやつにはおいしいパン！！パン屋さんは朝から大盛況！！幼稚園や学校が終わる時間になるとお店の前にたくさんの子供が！！</p>
+                    </div>
+                    <div class="box">
+                        <span class="time">00:00</span>
+                        <div class="horizontal-line"></div>
+                        <div class="box-content">
+                            <div class="box-area">
+                                <img src="./items/mina/パン屋外.jpg" alt="pancake" class="box-image">
+                                <img src="./items/mina/パン屋中.jpg" alt="pancake" class="box-image">
+                            </div>
+                            <p class="box-text">おやつにはおいしいパン！！パン屋さんは朝から大盛況！！幼稚園や学校が終わる時間になるとお店の前にたくさんの子供が！！</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <span class="time">00:00</span>
+                        <div class="horizontal-line"></div>
+                        <div class="box-content">
+                            <img src="./items/mina/奏の杜.jpg" alt="Image" class="box-image">
+                            <p class="box-text">お腹一杯になったら奏の杜でお買い物！クリニックもあるので急な体調不良でも安心です。</p>
+                        </div>
                     </div>
                 </div>
-                <div class="box">
-                    <span class="time">00:00</span>
-                    <div class="horizontal-line"></div>
-                    <div class="box-content">
-                        <img src="./items/mina/奏の杜.jpg" alt="Image" class="box-image">
-                        <p class="box-text">お腹一杯になったら奏の杜でお買い物！クリニックもあるので急な体調不良でも安心です。</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- 中央の縦線 -->
-            <div class="center-line"></div>
+                <!-- 中央の縦線 -->
+                <div class="center-line"></div>
 
-            <!-- 右側のボックス -->
-            <div class="right-side">
-                <div class="box">
-                    <span class="time">09:00</span>
-                    <div class="horizontal-line"></div>
-                    <div class="box-content">
-                        <img src="./items/mina/マンション.jpg" alt="Image" class="box-image">
-                        <p class="box-text">駅南西エリアは閑静な住宅街！小学校や中学校があるため子供たちの多い街です。</p>
+                <!-- 右側のボックス -->
+                <div class="right-side">
+                    <div class="box">
+                        <span class="time">09:00</span>
+                        <div class="horizontal-line"></div>
+                        <div class="box-content">
+                            <img src="./items/mina/マンション.jpg" alt="Image" class="box-image">
+                            <p class="box-text">駅南西エリアは閑静な住宅街！小学校や中学校があるため子供たちの多い街です。</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <span class="time">00:00</span>
+                        <div class="horizontal-line"></div>
+                        <div class="box-content">
+                            <img src="./items/mina/湘南パンケーキ.jpg" alt="Image" class="box-image">
+                            <img src="./items/mina/メニュー.jpg" alt="Image" class="box-image">
+                            <p class="box-text">ランチは子供と一緒にパンケーキ！小さな子でも食べられるメニューがいっぱいです！</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <span class="time">00:00</span>
+                        <div class="horizontal-line"></div>
+                        <div class="box-content">
+                            <img src="./items/mina/ベルク.jpg" alt="Image" class="box-image">
+                            <p class="box-text">家に帰る前にスーパーでお買い物! 品ぞろえ豊富なスーパーは生活に欠かせません。</p>
+                        </div>
                     </div>
                 </div>
-                <div class="box">
-                    <span class="time">00:00</span>
-                    <div class="horizontal-line"></div>
-                    <div class="box-content">
-                        <img src="./items/mina/湘南パンケーキ.jpg" alt="Image" class="box-image">
-                        <img src="./items/mina/メニュー.jpg" alt="Image" class="box-image">
-                        <p class="box-text">ランチは子供と一緒にパンケーキ！小さな子でも食べられるメニューがいっぱいです！</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <span class="time">00:00</span>
-                    <div class="horizontal-line"></div>
-                    <div class="box-content">
-                        <img src="./items/mina/ベルク.jpg" alt="Image" class="box-image">
-                        <p class="box-text">家に帰る前にスーパーでお買い物! 品ぞろえ豊富なスーパーは生活に欠かせません。</p>
-                    </div>
+                <div id="zoomback">
+                    <img id="zooming" src="./items/placeholder.png" alt="zoom">
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+    <script src="hamburger.js"></script>
 </body>
 </html>
