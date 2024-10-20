@@ -18,7 +18,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    height: 60px;
+    height: 7%;
     background-color: #fdf5ed;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
     z-index: 10;
@@ -31,7 +31,7 @@ body {
 
 .siteTitle {
     margin: 5px 0 0 0;
-    
+    color: #000;
 }
 
 .visited:visited {
@@ -159,7 +159,7 @@ body {
 /* 上部の円形アイコン */
 .top-icons {
     position: absolute;
-    top: 100px;
+    top: 12%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -184,13 +184,12 @@ body {
 
 /* コンテンツ全体のレイアウト */
 .content {
-    position: relative;
+    position: absolute;
     width: 90%;
-    max-width: 1200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 180px; /* 円形アイコンの下にスペースを追加 */
+    top: 20%; /* 円形アイコンの下にスペースを追加 */
 }
 
 /* 左右のボックス */
@@ -198,36 +197,60 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 5% 0 5%;
+    margin: 0 5%;
 }
 
-.left-side {
+/* 箱の位置調整 */
+/* 南東ページ */
+.nantou .left-side {
     margin-right: auto;
-    transform: translateX(-8%);
+    transform: translateX(-12%);
 }
 
-.right-side {
+.nantou .right-side {
     margin-right: auto;
-    transform: translateX(-2%);
+    transform: translateX(-13%);
 }
+
+/* 南西ページ */
+.nannsei .left-side {
+    margin-right: auto;
+    transform: translateX(0.3%);
+}
+
+.nannsei .right-side {
+    margin-right: auto;
+    transform: translateX(2.4%);
+}
+
+/* 北ページ */
+.ekikita .left-side {
+    margin-right: auto;
+    transform: translateX(-5%);
+}
+
+.ekikita .right-side {
+    margin-right: auto;
+    transform: translateX(-5%);
+}
+/* 箱の位置調整ここまで */
 
 /* ボックスのデザイン */
 .box {
     position: relative;
-    margin: 30px 0;
-    width: 600px;
-    min-height: 200px;
+    margin: 5% 0;
+    width: 100%;
     border: 2px solid #a97b5d;
     background-color: #fff;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    flex-direction: column;
 }
 
 .box-content {
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -239,13 +262,13 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 /*箱の中の画像*/
 .box-image {
-    max-width: 200px;
-    height: auto;
-    margin: 10px;
+    max-width: 40%;
+    margin: 2%;
     cursor: pointer;
 }
 
@@ -271,7 +294,7 @@ body {
 
 /*コメントする人のアイコン*/
 .comment-image {
-    max-width: 80px;
+    width: 10%;
     height: auto;
     margin-right: 15px;
     display: block;
@@ -286,10 +309,9 @@ body {
 }
 
 .time {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 23px;
+    position: relative;
+    right: 43%;
+    font-size: 1.3rem;
     color: #a97b5d;
 }
 
@@ -309,13 +331,13 @@ body {
     position: absolute;
     top: 1%;
     left: 100%;
-    width: 40px;
+    width: 5%;
     height: 15px;
     background-color: #7b5e47;
 }
 
 .right-side .box .horizontal-line {
-    left: -42px;
+    left: -5%;
 }
 
 #zoomback {
@@ -340,31 +362,12 @@ body {
 }
 
 @media (max-width: 768px) {
-    .box {
-        width: 80%;
-        margin: 20px auto;
+    .right-side {
+        transform: translateX(-5%);
     }
 
-    .left-side, .right-side {
-        transform: translateX(0);
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .center-line {
-        left: 50%;
-    }
-
-    .horizontal-line {
-        display: none;
-    }
-
-    .box-image {
-        max-width: 80px;
-    }
-
-    .box-comment {
-        align-items: flex-start;
+    .time {
+        right: 40%;
     }
 
     .comment-image {
