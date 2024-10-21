@@ -147,13 +147,14 @@ body {
 .container {
     width: 100%;
     max-width: 800px;
-    min-height: 500px;
     background-color: #ffffff; /* コンテナの背景色 */
     border: 10px solid #a8cba1; /* 緑色の枠線 */
     border-radius: 10px; /* コンテナの角を丸くする */
     padding: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* コンテナに影をつける */
-    margin: 20px auto;
+    margin: 20px 0;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
 }
 
 /* ヘッダーの設定 */
