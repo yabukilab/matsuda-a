@@ -173,6 +173,10 @@ body {
     font-size: 22px;
 }
 
+.title p {
+    font-size: 1rem;
+}
+
 /* ボックスの修正（ネストされたボックスを解除） */
 .content-boxes {
     margin-bottom: 20px;

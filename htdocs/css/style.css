@@ -215,12 +215,12 @@ body {
 /* 南西ページ */
 .nannsei .left-side {
     margin-right: auto;
-    transform: translateX(0.3%);
+    transform: translateX(1%);
 }
 
 .nannsei .right-side {
     margin-right: auto;
-    transform: translateX(2.4%);
+    transform: translateX(1%);
 }
 
 /* 北ページ */
@@ -267,7 +267,7 @@ body {
 
 /*箱の中の画像*/
 .box-image {
-    max-width: 40%;
+    max-width: 50%;
     margin: 2%;
     cursor: pointer;
 }
@@ -361,10 +361,45 @@ body {
     width: 30%;
 }
 
-@media (max-width: 768px) {
-    .right-side {
-        transform: translateX(-5%);
+@media (max-width: 600px) {
+    .box-area {
+        flex-direction: column;
     }
+
+    /* 箱の位置調整 */
+    /* 南東ページ */
+    .nantou .left-side {
+        margin-right: auto;
+        transform: translateX(-8%);
+    }
+
+    .nantou .right-side {
+        margin-right: auto;
+        transform: translateX(-2%);
+    }
+
+    /* 南西ページ */
+    .nannsei .left-side {
+        margin-right: auto;
+        transform: translateX(-8%);
+    }
+
+    .nannsei .right-side {
+        margin-right: auto;
+        transform: translateX(-3%);
+    }
+
+    /* 北ページ */
+    .ekikita .left-side {
+        margin-right: auto;
+        transform: translateX(-8%);
+    }
+
+    .ekikita .right-side {
+        margin-right: auto;
+        transform: translateX(-2%);
+    }
+    /* 箱の位置調整ここまで */
 
     .time {
         right: 40%;
