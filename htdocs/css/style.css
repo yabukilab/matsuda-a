@@ -159,7 +159,7 @@ body {
 /* 上部の円形アイコン */
 .top-icons {
     position: absolute;
-    top: 12%;
+    top: 75px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -167,8 +167,8 @@ body {
 }
 
 .circle {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     border: 2px solid #a3c4a6;
     display: flex;
@@ -179,7 +179,7 @@ body {
 
 .text-circle {
     color: #517c5b;
-    font-size: 28px;
+    font-size: 24px;
 }
 
 /* コンテンツ全体のレイアウト */
@@ -189,7 +189,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 20%; /* 円形アイコンの下にスペースを追加 */
+    top: 150px; /* 円形アイコンの下にスペースを追加 */
 }
 
 /* 左右のボックス */
@@ -358,7 +358,7 @@ body {
 }
 
 #zooming {
-    width: 30%;
+    width: 40%;
 }
 
 @media (max-width: 600px) {
