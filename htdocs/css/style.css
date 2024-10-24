@@ -21,7 +21,7 @@ body {
     height: 60px;
     background-color: #fdf5ed;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
-    z-index: 10;
+    z-index: 10;    /* 要素が重なったときに上に表示される度合い．数が大きいほど前列． */
 }
 
 .headerNavOuter {
@@ -276,7 +276,6 @@ body {
 .box-text {
     font-size: 1rem;
     color: #333;
-    text-align: center;
     word-wrap: break-word;
 }
 
@@ -340,6 +339,7 @@ body {
     left: -5%;
 }
 
+/* 画像の拡大表示 */
 #zoomback {
     position: fixed;
     top: 0;

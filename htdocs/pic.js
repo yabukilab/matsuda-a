@@ -17,12 +17,6 @@ function kakudai(e) {
 // 拡大画像表示領域をクリックしたときに閉じる
 zoomback.addEventListener("click", modosu);
 
-// onerrorのエラー処理
-function handleImageError(img) {
-    img.onerror = null; // onerror ハンドラーを解除して無限ループを防ぐ
-    img.src = './items/placeholder.png'; // デフォルトの画像に切り替え
-}
-
 function modosu() {
     zoomback.style.display = "none";
 }
