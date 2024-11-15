@@ -1,0 +1,57 @@
+
+/* 全体のボディ設定 */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* リンクを正方形の形で2x2に並べるためのコンテナ */
+.link-container {
+  display: grid;  /* グリッドレイアウトを使用 */
+  grid-template-columns: repeat(2, 1fr);  /* 横に2列 */
+  grid-template-rows: repeat(2, 1fr);     /* 縦に2行 */
+  gap: 20px;  /* 各リンクの間に隙間を設ける */
+  justify-items: center;  /* 各アイテムを中央に配置 */
+  align-items: center;    /* アイテムを中央に配置 */
+  max-width: 400px;       /* 最大幅を設定 */
+  margin: 0 auto;         /* 中央揃え */
+}
+
+/* 各リンクのスタイル */
+.link-container a {
+  display: flex;
+  justify-content: center;  /* テキストを中央に配置 */
+  align-items: center;      /* テキストを縦方向にも中央に配置 */
+  width: 150px;             /* 幅 */
+  height: 150px;            /* 高さ */
+  background-color: #ffcc00; /* 背景色 */
+  color: white;             /* 文字色 */
+  text-decoration: none;    /* 下線を消す */
+  border-radius: 10px;      /* 角を丸める */
+  font-size: 16px;          /* フォントサイズ */
+  font-weight: bold;        /* フォントの太さ */
+  text-align: center;       /* テキストを中央に揃える */
+  transition: background-color 0.3s ease; /* ホバー時の背景色の変化を滑らかに */
+}
+
+/* ホバー時の背景色変更 */
+.link-container a:hover {
+  background-color: #ffcc00;
+}
+
+.map-container {
+  text-align: center;
+  margin-top: 40px;  /* 上部の余白 */
+  padding-bottom: 20px;
+}
+
+/* Googleマップのiframeに追加のスタイルを設定 */
+.map-container iframe {
+  border-radius: 10px;  /* 角を丸くする */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* 地図に影を追加 */
+}
+
+  
+   
+  
