@@ -1,9 +1,148 @@
-
 /* 全体のボディ設定 */
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f9f9f9;
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* よりモダンで洗練されたフォント */
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1; /* 明るいグレーで柔らかい印象 */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 高さを画面全体に */
+  justify-content: space-between; /* 上下に余白を */
+  line-height: 1.6; /* 行間を広めに */
+}
+
+
+/* ヘッダーのスタイル */
+header {
+  text-align: center;
+  background-color: #ffcc00; /* 明るいオレンジ色 */
+  padding: 60px 20px; /* 上下に広めの余白 */
+  color: white;
+  font-size: 3em; /* ヘッダーのフォントサイズを大きく */
+  font-weight: 700; /* フォントの太さを太く */
+  letter-spacing: 5px; /* 文字間隔を広げてスタイリッシュに */
+  text-transform: uppercase; /* ヘッダーを大文字に */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* ヘッダーに影を加え、立体感を */
+}
+
+/* ヘッダーの画像 */
+header img {
+  width: 60%; /* 画像の幅を狭くしてバランスを調整 */
+  max-width: 500px;
+  margin-top: 20px;
+  border-radius: 15px; /* 画像の角を丸く */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* 画像に影を加える */
+}
+
+/* コンテンツ部分のスタイル */
+.content {
+  padding: 40px 20px; /* 上下の余白を広めに */
+  text-align: center;
+  background-color: #ffffff; /* 背景を白にして、コンテンツが目立つように */
+  margin-top: -20px; /* ヘッダーと少し重なるように */
+  border-radius: 10px; /* コーナーを丸く */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* コンテンツに影をつける */
+}
+
+/* 見出しのスタイル */
+.content h2 {
+  margin-top: 20px;
+  font-size: 2.4em; /* フォントサイズを大きく */
+  font-weight: 600;
+  color: #333; /* 見出しの色を暗いグレーに */
+  letter-spacing: 1.5px; /* 見出しの文字間隔を広げて洗練さを出す */
+  text-transform: uppercase; /* 見出しを大文字に */
+  padding-bottom: 10px;
+  border-bottom: 3px solid #ff7a00; /* オレンジ色の下線 */
+  background: linear-gradient(to right, #ff7a00, #ffcc00); /* オレンジのグラデーション背景 */
+  -webkit-background-clip: text; /* グラデーションを文字に適用 */
+  color: transparent; /* 文字色を透明にし、背景グラデーションを適用 */
+}
+
+/* 本文のスタイル */
+.content p {
+  font-size: 1.4em; /* フォントサイズを少し大きく */
+  color: #555; /* 少し薄いグレーで柔らかい印象 */
+  line-height: 1.8; /* 行間を広げて読みやすく */
+  margin-top: 15px;
+  max-width: 100%; /* 親要素に合わせて最大幅を100%に設定 */
+  margin-left: auto;
+  margin-right: auto; /* 中央揃え */
+  font-weight: 400;
+  padding: 0 15px; /* 本文に左右の余白 */
+  word-wrap: break-word; /* 単語が長すぎる場合に折り返す */
+  white-space: normal; /* 通常の折り返しに設定 */
+}
+
+/* 本文のリンクスタイル */
+.content p a {
+  color: #ff7a00; /* リンクの色をオレンジに */
+  text-decoration: underline; /* 下線を追加 */
+  font-weight: bold; /* リンクを太字に */
+  transition: color 0.3s ease, text-decoration-color 0.3s ease; /* リンクのホバー時に変化 */
+}
+
+/* リンクのホバー時のスタイル */
+.content p a:hover {
+  color: #ffcc00; /* ホバー時の色を明るいオレンジに */
+  text-decoration-color: #ffcc00; /* 下線の色をホバー時に変える */
+}
+/* リンクのコンテナ */
+.link-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 横に2列 */
+  grid-template-rows: repeat(2, 1fr); /* 縦に2行 */
+  gap: 20px; /* リンク間の間隔 */
+  justify-items: center; /* アイテムを中央に配置 */
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+/* リンクボタンのスタイル */
+.link-container a {
+  display: block;
+  width: 180px;
+  height: 180px;
+  background-color: #ffcc00; /* 背景色はオレンジ */
+  color: white;
+  text-decoration: none;
+  border-radius: 12px; /* ボタンの角を丸く */
+  font-size: 20px; /* フォントサイズを少し大きく */
+  font-weight: 700; /* フォントを太くして、力強い印象 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* ボタンに影をつけて立体感を出す */
+  transition: all 0.3s ease; /* ホバー時のスムーズな変化 */
+}
+
+/* リンクホバー時の効果 */
+.link-container a:hover {
+  background-color: #ff7a00; /* ホバー時の色 */
+  transform: translateY(-5px); /* 少し浮き上がる */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* 影を強調 */
+}
+
+/* フッター部分のスタイル */
+footer {
+  background-color: #ffcc00; /* 背景色をオレンジに */
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* フッターに影をつける */
+  border-top-left-radius: 20px; /* フッターの角を丸く */
+  border-top-right-radius: 20px;
+}
+
+/* フッター内のテキストサイズ */
+footer p {
+  margin: 0;
+  font-size: 1.6em; /* フッターの文字サイズを少し大きく */
+  font-weight: 600;
+  text-transform: uppercase; /* フッターのテキストを大文字に */
 }
 
 /* リンクを正方形の形で2x2に並べるためのコンテナ */
@@ -14,7 +153,7 @@ body {
   gap: 20px;  /* 各リンクの間に隙間を設ける */
   justify-items: center;  /* 各アイテムを中央に配置 */
   align-items: center;    /* アイテムを中央に配置 */
-  max-width: 400px;       /* 最大幅を設定 */
+  max-width: 450px;       /* 最大幅を設定 */
   margin: 0 auto;         /* 中央揃え */
 }
 
@@ -23,13 +162,13 @@ body {
   display: flex;
   justify-content: center;  /* テキストを中央に配置 */
   align-items: center;      /* テキストを縦方向にも中央に配置 */
-  width: 150px;             /* 幅 */
-  height: 150px;            /* 高さ */
+  width: 160px;             /* 幅 */
+  height: 160px;            /* 高さ */
   background-color: #ffcc00; /* 背景色 */
   color: white;             /* 文字色 */
   text-decoration: none;    /* 下線を消す */
   border-radius: 10px;      /* 角を丸める */
-  font-size: 16px;          /* フォントサイズ */
+  font-size: 18px;          /* フォントサイズ */
   font-weight: bold;        /* フォントの太さ */
   text-align: center;       /* テキストを中央に揃える */
   transition: background-color 0.3s ease; /* ホバー時の背景色の変化を滑らかに */
@@ -37,21 +176,19 @@ body {
 
 /* ホバー時の背景色変更 */
 .link-container a:hover {
-  background-color: #ffcc00;
+  background-color: #ff9900; /* ホバー時に少し暗く */
 }
 
+/* 地図表示用コンテナ */
 .map-container {
   text-align: center;
   margin-top: 40px;  /* 上部の余白 */
   padding-bottom: 20px;
 }
 
-
 /* Googleマップのiframeに追加のスタイルを設定 */
 .map-container iframe {
   border-radius: 10px;  /* 角を丸くする */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* 地図に影を追加 */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);  /* 地図に影を追加 */
 }
 
-
-  

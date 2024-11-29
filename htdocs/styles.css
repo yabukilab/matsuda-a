@@ -1,19 +1,35 @@
+
 /* 全体のスタイル */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #FFF; /* 明るい黄色背景 */
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* モダンなフォント */
+    background-color: #f8f8f8; /* 明るい背景で柔らかい印象 */
     margin: 0;
     padding: 20px;
     color: #333;
+    line-height: 1.6; /* 行間を広くして読みやすく */
 }
 
+/* ヘッダー */
 h1 {
     text-align: center;
-    color: #FFF; /* 黄色 */
-    font-size: 2.5em;
+    font-size: 2.8em;
     margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* ヘッダーに影をつけて立体感を */
 }
 
+
+/* セクション */
+section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* 背景を白に */
+    border-radius: 10px; /* セクションの角を丸く */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* セクションに影をつける */
+}
 section {
     max-width: 800px;
     margin: 0 auto;
@@ -25,79 +41,96 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 30px;
-    background-color: #FFF; /* 白背景でコントラストをつける */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
+    background-color: #fff; /* 白背景 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* テーブルに影をつけて立体感 */
+    border-radius: 10px; /* 角を丸く */
 }
 
 th, td {
-    padding: 15px;
+    padding: 18px;
     text-align: left;
+    font-size: 1.2em;
 }
 
+/* ヘッダー行 */
 th {
-    background-color: #FFCC00; /* 黄色 */
-    color: #333; /* ダークグレーでコントラスト */
-    font-weight: bold;
-    width: 150px;
+    background-color: #ffcc00; /* 明るい黄色 */
+    color: #333; /* ダークグレー */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
+/* テーブルのデータ行 */
 td {
     border-bottom: 1px solid #ddd;
+    color: #555; /* 少し薄い色で文字を表示 */
 }
 
-/* 最後の行のボーダーを削除 */
 tr:last-child td {
-    border-bottom: none;
+    border-bottom: none; /* 最後の行のボーダーを削除 */
 }
 
 /* 見出し */
 h2 {
-    color: #FFF;
-    font-size: 1.8em;
+    color: #ffcc00; /* 黄色 */
+    font-size: 2.2em;
     margin-top: 40px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center; /* 中央揃え */
+    text-transform: uppercase;
+    border-bottom: 2px solid #ffcc00; /* 下線をつける */
+    padding-bottom: 10px;
 }
 
+/* サブ見出し */
 h3 {
     color: #333;
-    font-size: 1.5em;
+    font-size: 1.8em;
     margin-top: 30px;
+    font-weight: 600;
 }
 
 /* リンクのスタイル */
 a {
-    color: #FFCC00; /* 黄色 */
+    color: #ffcc00; /* 黄色 */
     text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease; /* ホバー時にスムーズに変化 */
 }
 
 a:hover {
     text-decoration: underline;
+    color: #ff7a00; /* ホバー時に色を変更 */
 }
 
 /* リストのスタイル */
 ul {
     list-style-type: none;
     padding: 0;
+    margin-left: 20px;
 }
 
 li {
-    margin: 5px 0;
+    margin: 8px 0;
+    font-size: 1.1em;
+    color: #555;
 }
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     body {
-        padding: 10px;
+        padding: 15px;
     }
     h1 {
-        font-size: 2em;
+        font-size: 2.2em; /* スマホで文字を少し小さく */
     }
     h2, h3 {
-        font-size: 1.5em;
+        font-size: 1.6em; /* 見出しも少し小さく */
     }
     th, td {
-        padding: 10px;
+        padding: 12px;
     }
 }
 <<<<<<< HEAD
