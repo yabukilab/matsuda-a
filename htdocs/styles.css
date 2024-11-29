@@ -100,6 +100,9 @@ li {
         padding: 10px;
     }
 }
+<<<<<<< HEAD
 table tr:last-child td {
     border-bottom: 1px solid black; /* 最後の行にも枠線を追加 */
 }
+=======
+>>>>>>> ca8c6079efc7724b33ac115a4865463bda36ad23
