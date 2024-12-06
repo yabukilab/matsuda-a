@@ -7,6 +7,8 @@ body {
     padding: 20px;
     color: #333;
     line-height: 1.6; /* 行間を広くして読みやすく */
+    word-wrap: break-word; /* 長い単語が折り返されるように */
+    white-space: normal; /* 単語内で改行を許可しない */
 }
 
 /* ヘッダー */
@@ -50,6 +52,8 @@ th, td {
     padding: 18px;
     text-align: left;
     font-size: 1.2em;
+    word-wrap: break-word; /* 長い単語が折り返されるように */
+    white-space: normal; /* 単語内で改行を許可しない */
 }
 
 /* ヘッダー行 */
