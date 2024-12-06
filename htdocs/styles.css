@@ -1,4 +1,3 @@
-
 /* 全体のスタイル */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif; /* モダンなフォント */
@@ -7,6 +6,15 @@ body {
     padding: 20px;
     color: #333;
     line-height: 1.6; /* 行間を広くして読みやすく */
+    word-wrap: break-word; /* 長い単語が折り返されるように */
+    white-space: normal; /* 単語内で改行を許可しない */
+    -ms-word-wrap: break-word; /* Internet Explorer対応 */
+    word-break: break-word; /* 途中で分割されないように */
+}
+
+/* テキストが改行されないようにする */
+.no-break {
+    white-space: nowrap; /* これで長い単語やフレーズが改行されず一行に収まる */
 }
 
 /* ヘッダー */
@@ -20,7 +28,6 @@ h1 {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* ヘッダーに影をつけて立体感を */
 }
 
-
 /* セクション */
 section {
     max-width: 900px;
@@ -30,6 +37,7 @@ section {
     border-radius: 10px; /* セクションの角を丸く */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* セクションに影をつける */
 }
+
 section {
     max-width: 800px;
     margin: 0 auto;
@@ -50,6 +58,8 @@ th, td {
     padding: 18px;
     text-align: left;
     font-size: 1.2em;
+    word-wrap: break-word; /* 長い単語が折り返されるように */
+    white-space: normal; /* 単語内で改行を許可しない */
 }
 
 /* ヘッダー行 */
@@ -132,7 +142,7 @@ li {
     }
 } HEAD
 table tr:last-child td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.993); /* 最後の行にも枠線を追加 */
+    border-bottom: 1px solid black; /* 最後の行にも枠線を追加 */
 }
 /* 戻るボタン */
 .back-button {
