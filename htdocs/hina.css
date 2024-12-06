@@ -203,3 +203,22 @@ footer p {
   object-fit: cover; /* 画像を親要素に合わせて引き伸ばし、切り取る */
   margin: 0; /* 画像の余白をなくす */
 }
+
+/* デフォルトのスタイル */
+body {
+  font-size: 16px;
+}
+
+/* スマホ用 */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* タブレット用 */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+}
