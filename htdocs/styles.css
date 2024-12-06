@@ -132,6 +132,9 @@ li {
     th, td {
         padding: 12px;
     }
+} HEAD
+table tr:last-child td {
+    border-bottom: 1px solid black; /* 最後の行にも枠線を追加 */
 }
 /* 戻るボタン */
 .back-button {
