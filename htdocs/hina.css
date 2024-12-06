@@ -11,18 +11,18 @@ body {
   line-height: 1.6; /* 行間を広めに */
 }
 
-
 /* ヘッダーのスタイル */
 header {
   text-align: center;
   background-color: #ffcc00; /* 明るいオレンジ色 */
-  padding: 60px 20px; /* 上下に広めの余白 */
+  padding: 25px 10px; /* 上下に広めの余白 */
   color: white;
   font-size: 3em; /* ヘッダーのフォントサイズを大きく */
   font-weight: 700; /* フォントの太さを太く */
   letter-spacing: 5px; /* 文字間隔を広げてスタイリッシュに */
   text-transform: uppercase; /* ヘッダーを大文字に */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* ヘッダーに影を加え、立体感を */
+  height: 200px;
 }
 
 /* ヘッダーの画像 */
@@ -46,7 +46,7 @@ header img {
 
 /* 見出しのスタイル */
 .content h2 {
-  margin-top: 20px;
+  margin-top: 18px;
   font-size: 2.4em; /* フォントサイズを大きく */
   font-weight: 600;
   color: #333; /* 見出しの色を暗いグレーに */
@@ -192,3 +192,14 @@ footer p {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);  /* 地図に影を追加 */
 }
 
+.image-container {
+  width: 100%; /* コンテナが親要素にフィットするように設定 */
+  overflow: hidden; /* 画像がコンテナからはみ出さないようにする */
+}
+
+.custom-size-image {
+  width: 100%;  /* 横幅を親要素の100%に設定（端まで表示） */
+  height: 50%; /* 縦幅も100%に設定して親要素にフィットさせる */
+  object-fit: cover; /* 画像を親要素に合わせて引き伸ばし、切り取る */
+  margin: 0; /* 画像の余白をなくす */
+}
