@@ -133,3 +133,36 @@ li {
         padding: 12px;
     }
 }
+/* 戻るボタン */
+.back-button {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background-color: #f8f8f8; /* ページの背景と同じ色 */
+    color: #333; /* 文字色はダークグレー */
+    padding: 10px 18px; /* 少し小さめに調整 */
+    font-size: 14px; /* フォントサイズを小さく */
+    cursor: pointer;
+    border-radius: 5px; /* 角を丸く */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 少しの影をつけて浮き感を */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* ホバー時の変化を滑らかに */
+}
+
+/* ホバー時 */
+.back-button:hover {
+    background-color: #e0e0e0; /* 少し濃い背景に変更 */
+    transform: translateY(-2px); /* 小さな浮き上がり */
+}
+
+/* フォーカス時 */
+.back-button:focus {
+    outline: none; /* フォーカス時の枠線を削除 */
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .back-button {
+        font-size: 12px; /* スマホでさらに小さく */
+        padding: 8px 16px; /* 小さめのボタン */
+    }
+}
