@@ -11,18 +11,34 @@ body {
   line-height: 1.6; /* 行間を広めに */
 }
 
-/* ヘッダーのスタイル */
+h1 {
+  white-space: nowrap;
+}
+
+h2 {
+  white-space: nowrap;
+}
+
 header {
   text-align: center;
-  background-color: #ffcc00; /* 明るいオレンジ色 */
-  padding: 25px 10px; /* 上下に広めの余白 */
+  background-color: #ffcc00;
+  padding: 25px 10px;
   color: white;
-  font-size: 3em; /* ヘッダーのフォントサイズを大きく */
-  font-weight: 700; /* フォントの太さを太く */
-  letter-spacing: 5px; /* 文字間隔を広げてスタイリッシュに */
-  text-transform: uppercase; /* ヘッダーを大文字に */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* ヘッダーに影を加え、立体感を */
-  height: 200px;
+  font-size: 3em;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: auto; /* 高さを自動で調整 */
+}
+
+p {
+  margin: 10px 0; /* 上下の余白を追加 */
+  font-size: 0.8em; /* フォントサイズを調整 */
+}
+
+header {
+  line-height: 1.4; /* 行間を調整 */
 }
 
 /* ヘッダーの画像 */
@@ -54,8 +70,14 @@ header img {
   text-transform: uppercase; /* 見出しを大文字に */
   padding-bottom: 10px;
   border-bottom: 3px solid #ff7a00; /* オレンジ色の下線 */
+  
+  /* 背景グラデーション */
   background: linear-gradient(to right, #ff7a00, #ffcc00); /* オレンジのグラデーション背景 */
-  -webkit-background-clip: text; /* グラデーションを文字に適用 */
+  
+  /* 文字にグラデーションを適用 */
+  -webkit-background-clip: text; /* Webkit系ブラウザ用 */
+  background-clip: text; /* 標準プロパティ */
+  
   color: transparent; /* 文字色を透明にし、背景グラデーションを適用 */
 }
 
@@ -125,26 +147,6 @@ header img {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* 影を強調 */
 }
 
-/* フッター部分のスタイル */
-footer {
-  background-color: #ffcc00; /* 背景色をオレンジに */
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: auto;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* フッターに影をつける */
-  border-top-left-radius: 20px; /* フッターの角を丸く */
-  border-top-right-radius: 20px;
-}
-
-/* フッター内のテキストサイズ */
-footer p {
-  margin: 0;
-  font-size: 1.6em; /* フッターの文字サイズを少し大きく */
-  font-weight: 600;
-  text-transform: uppercase; /* フッターのテキストを大文字に */
-}
-
 /* リンクを正方形の形で2x2に並べるためのコンテナ */
 .link-container {
   display: grid;  /* グリッドレイアウトを使用 */
@@ -204,21 +206,52 @@ footer p {
   margin: 0; /* 画像の余白をなくす */
 }
 
-/* デフォルトのスタイル */
-body {
-  font-size: 16px;
-}
+/* スマホ以下のサイズ対応（さらに小さい画面） */
+@media (max-width: 480px) {
+  header {
+    font-size: 1.6em; /* フォントサイズをさらに小さく */
+    padding: 10px 5px; /* ヘッダーの余白を調整 */
+  }
 
-/* スマホ用 */
-@media (max-width: 600px) {
-  body {
-    font-size: 14px;
+  .content {
+    padding: 15px; /* コンテンツの余白を調整 */
+  }
+
+  .link-container {
+    grid-template-columns: 1fr; /* リンクを縦に並べる */
+    grid-template-rows: auto;
   }
 }
 
-/* タブレット用 */
-@media (max-width: 1024px) {
-  body {
-    font-size: 15px;
-  }
+/* リンクを正方形の形で2x2に並べるためのコンテナ */
+.link-container {
+  display: grid;  /* グリッドレイアウトを使用 */
+  grid-template-columns: repeat(2, 1fr);  /* 横に2列 */
+  grid-template-rows: repeat(2, 1fr);     /* 縦に2行 */
+  gap: 20px;  /* 各リンクの間に隙間を設ける */
+  justify-items: center;  /* 各アイテムを中央に配置 */
+  align-items: center;    /* アイテムを中央に配置 */
+  max-width: 400px;       /* 最大幅を設定 */
+  margin: 0 auto;         /* 中央揃え */
+}
+
+/* 各リンクのスタイル */
+.link-container a {
+  display: flex;
+  justify-content: center;  /* テキストを中央に配置 */
+  align-items: center;      /* テキストを縦方向にも中央に配置 */
+  width: 150px;             /* 幅 */
+  height: 150px;            /* 高さ */
+  background-color: #ffcc00; /* 背景色 */
+  color: white;             /* 文字色 */
+  text-decoration: none;    /* 下線を消す */
+  border-radius: 10px;      /* 角を丸める */
+  font-size: 16px;          /* フォントサイズ */
+  font-weight: bold;        /* フォントの太さ */
+  text-align: center;       /* テキストを中央に揃える */
+  transition: background-color 0.3s ease; /* ホバー時の背景色の変化を滑らかに */
+}
+
+.link-container1 a:hover {
+  background-color: #ff7a00; /* ホバー時の背景色 */
 }
