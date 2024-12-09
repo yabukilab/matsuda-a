@@ -156,23 +156,23 @@ li {
 @media (max-width: 768px) {
     /* リンクコンテナ */
     .link-container1 {
-        justify-content: flex-start; /* スマホではリンクを左寄せ */
+        justify-content: center; /* スマホでも中央揃え */
         flex-wrap: wrap; /* リンクが折り返すように */
         gap: 10px; /* リンク間の隙間を少し小さく */
     }
 
     /* 各リンクのスタイル */
     .link-container1 a {
-        height: auto; /* スマホでは高さを自動調整 */
-        min-width: 100px; /* 最小幅を設定 */
-        max-width: 120px; /* 最大幅を設定 */
-        padding: 8px 12px; /* 内側の余白を少し小さく */
+        height: 50px; /* 高さを固定 */
+        min-width: 150px; /* 最小幅を150pxに設定 */
+        max-width: 150px; /* 最大幅を150pxに設定 */
+        padding: 8px 10px; /* 内側の余白を少し小さく */
         font-size: 0.9em; /* フォントサイズを少し小さく */
-        white-space: normal; /* 文字を折り返し可能にする */
+        white-space: nowrap; /* 文字が折り返されないように */
         word-wrap: break-word; /* 長い単語が折り返されるように */
-        word-break: break-word; /* 単語内での折り返しを強制 */
     }
 }
+
 
 
 
