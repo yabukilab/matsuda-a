@@ -38,12 +38,6 @@ section {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* セクションに影をつける */
 }
 
-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
 /* テーブルスタイル */
 table {
     width: 100%;
@@ -76,8 +70,6 @@ td {
     border-bottom: 1px solid #ddd;
     color: #555; /* 少し薄い色で文字を表示 */
 }
-
-
 
 /* 見出し */
 h2 {
@@ -126,58 +118,6 @@ li {
     color: #555;
 }
 
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
-    h1 {
-        font-size: 2.2em; /* スマホで文字を少し小さく */
-    }
-    h2, h3 {
-        font-size: 1.6em; /* 見出しも少し小さく */
-    }
-    th, td {
-        padding: 12px;
-    }
-} HEAD
-table tr:last-child td {
-    border-bottom: 1px solid black; /* 最後の行にも枠線を追加 */
-}
-/* 戻るボタン */
-.back-button {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    background-color: #f8f8f8; /* ページの背景と同じ色 */
-    color: #333; /* 文字色はダークグレー */
-    padding: 10px 18px; /* 少し小さめに調整 */
-    font-size: 14px; /* フォントサイズを小さく */
-    cursor: pointer;
-    border-radius: 5px; /* 角を丸く */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 少しの影をつけて浮き感を */
-    transition: background-color 0.2s ease, transform 0.2s ease; /* ホバー時の変化を滑らかに */
-}
-
-/* ホバー時 */
-.back-button:hover {
-    background-color: #e0e0e0; /* 少し濃い背景に変更 */
-    transform: translateY(-2px); /* 小さな浮き上がり */
-}
-
-/* フォーカス時 */
-.back-button:focus {
-    outline: none; /* フォーカス時の枠線を削除 */
-}
-
-/* スマホ対応 */
-@media (max-width: 768px) {
-    .back-button {
-        font-size: 12px; /* スマホでさらに小さく */
-        padding: 8px 16px; /* 小さめのボタン */
-    }
-}
-
 /* リンクコンテナ */
 .link-container1 {
     display: flex; /* フレックスボックスを使用 */
@@ -189,9 +129,6 @@ table tr:last-child td {
     width: 100%; /* ページ幅いっぱいに広げる */
     margin-top: 20px; /* ページ上部に少し余白を追加 */
     text-align: center; /* テキストを中央揃え */
-    overflow: hidden; /* はみ出さないようにする */
-    flex-wrap: nowrap; /* リンクが折り返さないように */
-    box-sizing: border-box; /* 余白分をサイズに含める */
 }
 
 /* 各リンクのスタイル */
@@ -217,12 +154,34 @@ table tr:last-child td {
 
 /* スマホ対応 */
 @media (max-width: 768px) {
+    body {
+        padding: 15px; /* スマホ用に余白を小さく */
+    }
+    h1 {
+        font-size: 2.2em; /* スマホで文字を少し小さく */
+    }
+    h2, h3 {
+        font-size: 1.6em; /* 見出しも少し小さく */
+    }
+    th, td {
+        padding: 12px; /* テーブルのセル内余白を少し小さく */
+    }
+
     .link-container1 {
-        justify-content: center; /* 中央揃えを維持 */
-        overflow: hidden; /* はみ出さないように */
-        padding: 10px; /* 余白を調整 */
+        justify-content: flex-start; /* スマホではリンクを左寄せ */
+        flex-wrap: wrap; /* リンクが折り返すように */
+        gap: 10px; /* リンク間の隙間を小さく */
+    }
+
+    .link-container1 a {
+        height: 40px; /* スマホでは高さを少し小さく */
+        width: 120px; /* スマホでは幅を小さく */
+        padding: 8px 12px; /* 内側の余白を少し小さく */
     }
 }
+
+
+
 
 
   
