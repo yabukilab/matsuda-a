@@ -11,8 +11,18 @@ body {
   line-height: 1.6; /* 行間を広めに */
 }
 
+/* h1のスタイル */
 h1 {
-  white-space: nowrap;
+  white-space: normal; /* テキストが折り返すように変更 */
+  font-size: 2em; /* 通常時のフォントサイズ */
+}
+
+/* スマホ以下のサイズ対応 */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6em; /* スマホではフォントサイズを小さくする */
+    padding: 10px; /* 余白も調整 */
+  }
 }
 
 h2 {
@@ -109,54 +119,18 @@ header img {
   color: #ffcc00; /* ホバー時の色を明るいオレンジに */
   text-decoration-color: #ffcc00; /* 下線の色をホバー時に変える */
 }
-/* リンクのコンテナ */
-.link-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 横に2列 */
-  grid-template-rows: repeat(2, 1fr); /* 縦に2行 */
-  gap: 20px; /* リンク間の間隔 */
-  justify-items: center; /* アイテムを中央に配置 */
-  margin-top: 40px;
-  padding: 0 20px;
-}
-
-/* リンクボタンのスタイル */
-.link-container a {
-  display: block;
-  width: 180px;
-  height: 180px;
-  background-color: #ffcc00; /* 背景色はオレンジ */
-  color: white;
-  text-decoration: none;
-  border-radius: 12px; /* ボタンの角を丸く */
-  font-size: 20px; /* フォントサイズを少し大きく */
-  font-weight: 700; /* フォントを太くして、力強い印象 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-sizing: border-box;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* ボタンに影をつけて立体感を出す */
-  transition: all 0.3s ease; /* ホバー時のスムーズな変化 */
-}
-
-/* リンクホバー時の効果 */
-.link-container a:hover {
-  background-color: #ff7a00; /* ホバー時の色 */
-  transform: translateY(-5px); /* 少し浮き上がる */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* 影を強調 */
-}
 
 /* リンクを正方形の形で2x2に並べるためのコンテナ */
 .link-container {
   display: grid;  /* グリッドレイアウトを使用 */
   grid-template-columns: repeat(2, 1fr);  /* 横に2列 */
   grid-template-rows: repeat(2, 1fr);     /* 縦に2行 */
-  gap: 20px;  /* 各リンクの間に隙間を設ける */
+  column-gap: 40px;  /* 横方向のリンク間隔を広げる */
+  row-gap: 20px;     /* 縦方向のリンク間隔はそのまま */
   justify-items: center;  /* 各アイテムを中央に配置 */
-  align-items: center;    /* アイテムを中央に配置 */
-  max-width: 450px;       /* 最大幅を設定 */
-  margin: 0 auto;         /* 中央揃え */
+  width: 100%; /* 横幅を100%に */
+  max-width: 550px;  /* 最大幅を設定（全体の幅を広げる） */
+  margin: 0 auto;  /* 中央揃え */
 }
 
 /* 各リンクのスタイル */
@@ -164,14 +138,14 @@ header img {
   display: flex;
   justify-content: center;  /* テキストを中央に配置 */
   align-items: center;      /* テキストを縦方向にも中央に配置 */
-  width: 160px;             /* 幅 */
-  height: 160px;            /* 高さ */
+  width: 250px;             /* 横幅を広げる */
+  height: 150px;            /* 高さはそのまま */
   background-color: #ffcc00; /* 背景色 */
   color: white;             /* 文字色 */
   text-decoration: none;    /* 下線を消す */
   border-radius: 10px;      /* 角を丸める */
-  font-size: 18px;          /* フォントサイズ */
-  font-weight: bold;        /* フォントの太さ */
+  font-size: 20px;          /* フォントサイズを大きくする */
+  font-weight: 900;         /* フォントを太く設定 */
   text-align: center;       /* テキストを中央に揃える */
   transition: background-color 0.3s ease; /* ホバー時の背景色の変化を滑らかに */
 }
@@ -180,6 +154,8 @@ header img {
 .link-container a:hover {
   background-color: #ff9900; /* ホバー時に少し暗く */
 }
+
+
 
 /* 地図表示用コンテナ */
 .map-container {
@@ -218,40 +194,10 @@ header img {
   }
 
   .link-container {
-    grid-template-columns: 1fr; /* リンクを縦に並べる */
-    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr); /* 2x2レイアウトに保持 */
+    grid-template-rows: repeat(2, 1fr); /* 2行に保持 */
+    gap: 15px; /* 各アイテムの間隔を少し狭く */
+    max-width: 320px; /* 幅を狭める */
   }
 }
 
-/* リンクを正方形の形で2x2に並べるためのコンテナ */
-.link-container {
-  display: grid;  /* グリッドレイアウトを使用 */
-  grid-template-columns: repeat(2, 1fr);  /* 横に2列 */
-  grid-template-rows: repeat(2, 1fr);     /* 縦に2行 */
-  gap: 20px;  /* 各リンクの間に隙間を設ける */
-  justify-items: center;  /* 各アイテムを中央に配置 */
-  align-items: center;    /* アイテムを中央に配置 */
-  max-width: 400px;       /* 最大幅を設定 */
-  margin: 0 auto;         /* 中央揃え */
-}
-
-/* 各リンクのスタイル */
-.link-container a {
-  display: flex;
-  justify-content: center;  /* テキストを中央に配置 */
-  align-items: center;      /* テキストを縦方向にも中央に配置 */
-  width: 150px;             /* 幅 */
-  height: 150px;            /* 高さ */
-  background-color: #ffcc00; /* 背景色 */
-  color: white;             /* 文字色 */
-  text-decoration: none;    /* 下線を消す */
-  border-radius: 10px;      /* 角を丸める */
-  font-size: 16px;          /* フォントサイズ */
-  font-weight: bold;        /* フォントの太さ */
-  text-align: center;       /* テキストを中央に揃える */
-  transition: background-color 0.3s ease; /* ホバー時の背景色の変化を滑らかに */
-}
-
-.link-container1 a:hover {
-  background-color: #ff7a00; /* ホバー時の背景色 */
-}
