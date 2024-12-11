@@ -201,3 +201,24 @@ header img {
   }
 }
 
+/* 見出しのスタイル */
+.content h2 {
+  margin-top: 18px;
+  font-size: 2.4em; /* フォントサイズを大きく */
+  font-weight: 600;
+  color: #333; /* 見出しの色を暗いグレーに */
+  letter-spacing: 1.5px; /* 見出しの文字間隔を広げて洗練さを出す */
+  text-transform: uppercase; /* 見出しを大文字に */
+  padding-bottom: 10px;
+  border-bottom: 3px solid #ff7a00; /* オレンジ色の下線 */
+  
+  /* 背景グラデーション */
+  background: linear-gradient(to right, #ff7a00, #ffcc00); /* オレンジのグラデーション背景 */
+  
+  /* 文字にグラデーションを適用 */
+  -webkit-background-clip: text; /* Webkit系ブラウザ用 */
+  background-clip: text; /* 標準プロパティ（ただし、標準ではサポートされていない） */
+  
+  color: transparent; /* 文字色を透明にし、背景グラデーションを適用 */
+}
+

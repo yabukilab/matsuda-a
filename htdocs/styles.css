@@ -6,10 +6,9 @@ body {
     padding: 20px;
     color: #333;
     line-height: 1.6; /* 行間を広くして読みやすく */
-    word-wrap: break-word; /* 長い単語が折り返されるように */
+    overflow-wrap: break-word; /* 長い単語が折り返されるように */
     white-space: normal; /* 単語内で改行を許可しない */
-    -ms-word-wrap: break-word; /* Internet Explorer対応 */
-    word-break: break-word; /* 途中で分割されないように */
+    -ms-overflow-wrap: break-word; /* Internet Explorer対応 */
 }
 
 /* テキストが改行されないようにする */
@@ -52,7 +51,7 @@ th, td {
     padding: 18px;
     text-align: left;
     font-size: 1.2em;
-    word-wrap: break-word; /* 長い単語が折り返されるように */
+    overflow-wrap: break-word; /* 長い単語が折り返されるように */
     white-space: normal; /* 単語内で改行を許可しない */
 }
 
@@ -169,9 +168,10 @@ li {
         padding: 8px 10px; /* 内側の余白を少し小さく */
         font-size: 0.9em; /* フォントサイズを少し小さく */
         white-space: nowrap; /* 文字が折り返されないように */
-        word-wrap: break-word; /* 長い単語が折り返されるように */
+        overflow-wrap: break-word; /* 長い単語が折り返されるように */
     }
 }
+
 
 
 
