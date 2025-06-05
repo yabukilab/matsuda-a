@@ -3,10 +3,11 @@
 // この関数定義はfunctions.phpに移動しました
 
 // SQLで作成したデータベース設定を使用
+// config.php の修正部分
 $dbServer = isset($_ENV['MYSQL_SERVER'])    ? $_ENV['MYSQL_SERVER']      : '127.0.0.1';
-$dbUser = isset($_SERVER['MYSQL_USER'])     ? $_SERVER['MYSQL_USER']     : 'testuser';
-$dbPass = isset($_SERVER['MYSQL_PASSWORD']) ? $_SERVER['MYSQL_PASSWORD'] : 'pass';
-$dbName = isset($_SERVER['MYSQL_DB'])       ? $_SERVER['MYSQL_DB']       : 'mydb';
+$dbUser = isset($_ENV['MYSQL_USER'])     ? $_ENV['MYSQL_USER']     : 'testuser';
+$dbPass = isset($_ENV['MYSQL_PASSWORD']) ? $_ENV['MYSQL_PASSWORD'] : 'pass';
+$dbName = isset($_ENV['MYSQL_DB'])       ? $_ENV['MYSQL_DB']       : 'mydb';
 
 $dsn = "mysql:host={$dbServer};dbname={$dbName};charset=utf8";
 
