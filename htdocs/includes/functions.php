@@ -17,12 +17,12 @@ function is_admin() {
 }
 
 // 型ヒントを追加して重複を防ぐ
-function h($var) {
-    if (is_array($var)) {
-        return array_map('h', $var);
-    } else {
-        return htmlspecialchars($var, ENT_QUOTES, 'UTF-8');
-    }
+function h(string|array $var): string|array {
+  if (is_array($var)) {
+    return array_map('h', $var);
+  } else {
+    return htmlspecialchars($var, ENT_QUOTES, 'UTF-8');
+  }
 }
 
 function format_size($bytes) {
