@@ -1,0 +1,21 @@
+/lab_share_system/
+├── css/
+│   └── style.css
+├── includes/
+│   ├── config.php
+│   ├── functions.php
+│   └── header.php
+├── js/
+│   └── table_editor.js
+├── uploads/
+│   └── .htaccess
+├── index.php
+├── home.php
+├── create_thread.php
+├── thread.php
+├── post_comment.php
+├── upload_file.php
+├── delete.php
+├── logout.php
+├── table_editor.php
+└── insert_table.php
