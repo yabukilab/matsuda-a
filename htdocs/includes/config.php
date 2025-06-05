@@ -1,12 +1,6 @@
 <?php
 # HTMLでのエスケープ処理をする関数（データベースとは無関係だが，ついでにここで定義しておく．）
-function h($var) {
-  if (is_array($var)) {
-    return array_map('h', $var);
-  } else {
-    return htmlspecialchars($var, ENT_QUOTES, 'UTF-8');
-  }
-}
+// この関数定義はfunctions.phpに移動しました
 
 // SQLで作成したデータベース設定を使用
 $dbServer = isset($_ENV['MYSQL_SERVER'])    ? $_ENV['MYSQL_SERVER']      : '127.0.0.1';

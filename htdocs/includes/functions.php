@@ -16,8 +16,13 @@ function is_admin() {
     return ($user = $stmt->fetch()) && $user['is_admin'];
 }
 
-function h($string) {
-    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+// 型ヒントを追加して重複を防ぐ
+function h(string|array $var): string|array {
+  if (is_array($var)) {
+    return array_map('h', $var);
+  } else {
+    return htmlspecialchars($var, ENT_QUOTES, 'UTF-8');
+  }
 }
 
 function format_size($bytes) {
@@ -46,7 +51,3 @@ function handle_zip_upload($file, $comment_id) {
     }
     return false;
 }
-
-
-
-?>
