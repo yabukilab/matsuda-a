@@ -22,13 +22,18 @@ ini_set('memory_limit', '3G');
 set_time_limit(300);
 
 try {
-  $db = new PDO($dsn, $dbUser, $dbPass);
-  # プリペアドステートメントのエミュレーションを無効にする．
-  $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-  # エラー→例外
-  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $pdo = new PDO(
+    "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
+    DB_USER,
+    DB_PASS,
+    [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      PDO::ATTR_EMULATE_PREPARES => false,
+    ]
+  );
 } catch (PDOException $e) {
-  echo "Can't connect to the database: " . h($e->getMessage());
+  die("Can't connect to the database: " . $e->getMessage());
 }
 
 session_start();
