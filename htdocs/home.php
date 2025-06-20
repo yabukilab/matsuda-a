@@ -26,17 +26,16 @@ $categories = $pdo->query("SELECT DISTINCT category FROM threads ORDER BY catego
 <div class="container">
     <header>
         <h1>スレッド一覧</h1>
-
+        <div class="user-info">
+            ユーザー名: <?php echo htmlspecialchars($_SESSION['name']); ?>
+            <?php if (is_admin()): ?>
+                <span class="admin-badge">管理者</span>
+            <?php endif; ?>
+            <a href="account_edit.php" class="btn">アカウント情報変更</a>
+            <a href="logout.php" class="logout-btn">ログアウト</a>
+        </div>
     </header>
 
-    <div class="user-info">
-        ユーザー名: <?php echo htmlspecialchars($_SESSION['name']); ?>
-        <?php if (is_admin()): ?>
-            <span class="admin-badge">管理者</span>
-        <?php endif; ?>
-        <a href="account_edit.php" class="btn">アカウント情報変更</a>
-        <a href="logout.php" class="logout-btn">ログアウト</a>
-    </div>
     <div class="controls">
         <a href="create_thread.php" class="btn">スレッド作成</a>
 
