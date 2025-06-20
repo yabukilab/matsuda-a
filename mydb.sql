@@ -1,73 +1,141 @@
--- (A1) 既存のDB・ユーザー・テーブルの削除（安全な初期化）
+-- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: mydb
+-- ------------------------------------------------------
+-- Server version	10.4.32-MariaDB
 
--- 既存のデータベースを削除（完全初期化が目的の場合）
-DROP DATABASE IF EXISTS mydb;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- ユーザーを削除（存在する場合）
-DROP USER IF EXISTS 'testuser'@'localhost';
+--
+-- Table structure for table `comments`
+--
 
--- (A2) データベースの再作成
-CREATE DATABASE mydb 
-  CHARACTER SET utf8mb4 
-  COLLATE utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `thread_id` int(11) NOT NULL,
+  `student_id` char(7) NOT NULL,
+  `content` text NOT NULL,
+  `file_path` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`comment_id`),
+  KEY `thread_id` (`thread_id`),
+  KEY `student_id` (`student_id`),
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`thread_id`) REFERENCES `threads` (`thread_id`) ON DELETE CASCADE,
+  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- (A3) ユーザー再作成と権限付与（安全な設定）
-CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'pass';
-GRANT ALL PRIVILEGES ON mydb.* TO 'testuser'@'localhost';
+--
+-- Dumping data for table `comments`
+--
 
--- (A4) 使用するデータベースを選択
-USE mydb;
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES (1,1,'3333333','atmic is ...',NULL,'2025-06-20 07:53:26');
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- 念のため：既存テーブル削除（順序注意：依存の少ない順）
-DROP TABLE IF EXISTS uploaded_folders;
-DROP TABLE IF EXISTS comments;
-DROP TABLE IF EXISTS threads;
-DROP TABLE IF EXISTS users;
+--
+-- Table structure for table `threads`
+--
 
--- ユーザーテーブル作成
-CREATE TABLE users (
-    student_id CHAR(7) PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    is_admin BOOLEAN NOT NULL DEFAULT FALSE
-);
+DROP TABLE IF EXISTS `threads`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `threads` (
+  `thread_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `created_by` char(7) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`thread_id`),
+  KEY `created_by` (`created_by`),
+  CONSTRAINT `threads_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- スレッドテーブル
-CREATE TABLE threads (
-    thread_id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    created_by CHAR(7) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (created_by) REFERENCES users(student_id)
-);
+--
+-- Dumping data for table `threads`
+--
 
--- コメントテーブル
-CREATE TABLE comments (
-    comment_id INT AUTO_INCREMENT PRIMARY KEY,
-    thread_id INT NOT NULL,
-    student_id CHAR(7) NOT NULL,
-    content TEXT NOT NULL,
-    file_path TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (thread_id) REFERENCES threads(thread_id) ON DELETE CASCADE,
-    FOREIGN KEY (student_id) REFERENCES users(student_id)
-);
+LOCK TABLES `threads` WRITE;
+/*!40000 ALTER TABLE `threads` DISABLE KEYS */;
+INSERT INTO `threads` VALUES (1,'原子','物理','3333333','2025-06-20 07:53:07');
+/*!40000 ALTER TABLE `threads` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- アップロードフォルダテーブル
-CREATE TABLE uploaded_folders (
-    folder_id INT AUTO_INCREMENT PRIMARY KEY,
-    comment_id INT NOT NULL,
-    folder_path VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (comment_id) REFERENCES comments(comment_id) ON DELETE CASCADE
-);
+--
+-- Table structure for table `uploaded_folders`
+--
 
--- 管理者アカウントを1件登録
-INSERT INTO users (student_id, name, password_hash, is_admin)
-VALUES (
-  '9877389',
-  '【管理者】研究室長',
-  '$2y$10$OYtBZzRbEO3UmJZzV7IKnOYzfdKRz7lNTDyz3Zrbi5UmmvG2hL9WC',
-  TRUE
-);
+DROP TABLE IF EXISTS `uploaded_folders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `uploaded_folders` (
+  `folder_id` int(11) NOT NULL AUTO_INCREMENT,
+  `comment_id` int(11) NOT NULL,
+  `folder_path` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`folder_id`),
+  KEY `comment_id` (`comment_id`),
+  CONSTRAINT `uploaded_folders_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `uploaded_folders`
+--
+
+LOCK TABLES `uploaded_folders` WRITE;
+/*!40000 ALTER TABLE `uploaded_folders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `uploaded_folders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `student_id` char(7) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('3333333','テストユーザー','$2y$10$uK6mNGS3bz/VL64QmPKX9uG/SVmyU7myJZ2mbPtNLyySVvnhib2Vu',0),('9877389','【管理者】研究室長','$2y$10$OYtBZzRbEO3UmJZzV7IKnOYzfdKRz7lNTDyz3Zrbi5UmmvG2hL9WC',1);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-06-20 17:32:25
