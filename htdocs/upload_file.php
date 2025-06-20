@@ -95,7 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // エラーメッセージ表示関数
-function getUploadErrorMessage($code) {
+function getUploadErrorMessage($code)
+{
     $errors = [
         UPLOAD_ERR_INI_SIZE => "ファイルサイズが大きすぎます（最大3GB）",
         UPLOAD_ERR_FORM_SIZE => "ファイルサイズがフォームの制限を超えています",
@@ -116,7 +117,7 @@ include 'includes/header.php';
     <header>
         <h1>ファイルアップロード</h1>
         <div class="user-info">
-            学籍番号: <?php echo htmlspecialchars($_SESSION['student_id']); ?>
+            ユーザー名: <?php echo htmlspecialchars($_SESSION['name']); ?>
             <a href="thread.php?id=<?php echo htmlspecialchars($thread_id); ?>" class="btn">スレッドに戻る</a>
             <a href="logout.php" class="logout-btn">ログアウト</a>
         </div>

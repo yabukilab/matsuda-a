@@ -10,7 +10,7 @@ if (!isset($_SESSION['student_id'])) {
 $category_filter = $_GET['category'] ?? null;
 $order = (isset($_GET['order']) && $_GET['order'] === 'asc') ? 'ASC' : 'DESC';
 
-$sql = "SELECT t.*, u.is_admin 
+$sql = "SELECT t.*, u.name AS author_name, u.is_admin 
         FROM threads t
         JOIN users u ON t.created_by = u.student_id
         WHERE ? IS NULL OR t.category = ?
@@ -26,15 +26,17 @@ $categories = $pdo->query("SELECT DISTINCT category FROM threads ORDER BY catego
 <div class="container">
     <header>
         <h1>スレッド一覧</h1>
-        <div class="user-info">
-            学籍番号: <?php echo h($_SESSION['student_id']); ?>
-            <?php if ($_SESSION['student_id'] === '9877389'): ?>
-                <span class="admin-badge">管理者</span>
-            <?php endif; ?>
-            <a href="logout.php" class="logout-btn">ログアウト</a>
-        </div>
+
     </header>
 
+    <div class="user-info">
+        ユーザー名: <?php echo htmlspecialchars($_SESSION['name']); ?>
+        <?php if (is_admin()): ?>
+            <span class="admin-badge">管理者</span>
+        <?php endif; ?>
+        <a href="account_edit.php" class="btn">アカウント情報変更</a>
+        <a href="logout.php" class="logout-btn">ログアウト</a>
+    </div>
     <div class="controls">
         <a href="create_thread.php" class="btn">スレッド作成</a>
 
@@ -86,7 +88,7 @@ $categories = $pdo->query("SELECT DISTINCT category FROM threads ORDER BY catego
                     </div>
 
                     <div class="thread-meta">
-                        <span>投稿者: <?php echo h($thread['created_by']); ?></span>
+                        <span>投稿者: <?php echo h($thread['author_name']); ?></span>
                         <span>投稿日時: <?php echo h($thread['created_at']); ?></span>
 
                         <?php if ($_SESSION['student_id'] === $thread['created_by'] || $_SESSION['student_id'] === '9877389'): ?>

@@ -12,7 +12,7 @@ if (!isset($_GET['id'])) {
     exit;
 }
 
-$stmt = $pdo->prepare("SELECT t.*, u.is_admin 
+$stmt = $pdo->prepare("SELECT t.*, u.name AS author_name, u.is_admin 
                       FROM threads t
                       JOIN users u ON t.created_by = u.student_id
                       WHERE t.thread_id = ?");
@@ -24,7 +24,7 @@ if (!$thread) {
     exit;
 }
 
-$stmt = $pdo->prepare("SELECT c.*, u.is_admin 
+$stmt = $pdo->prepare("SELECT c.*, u.name AS author_name, u.is_admin 
                       FROM comments c
                       JOIN users u ON c.student_id = u.student_id
                       WHERE c.thread_id = ?
@@ -50,7 +50,7 @@ unset($comment);
     <header>
         <h1><?= h($thread['title']) ?></h1>
         <div class="user-info">
-            学籍番号: <?= h($_SESSION['student_id']) ?>
+            ユーザー名: <?php echo htmlspecialchars($_SESSION['name']); ?>
             <?php if ($_SESSION['student_id'] === '9877389'): ?>
                 <span class="admin-badge">管理者</span>
             <?php endif; ?>
@@ -61,7 +61,7 @@ unset($comment);
 
     <div class="thread-meta">
         <span>カテゴリ: <?= h($thread['category']) ?></span>
-        <span>作成者: <?= h($thread['created_by']) ?></span>
+        <span>作成者: <?= h($thread['author_name']) ?></span>
         <span>作成日時: <?= h($thread['created_at']) ?></span>
     </div>
 
@@ -76,7 +76,7 @@ unset($comment);
                     <div class="comment-item">
                         <div class="comment-header">
                             <span class="comment-author">
-                                <?= h($comment['student_id']) ?>
+                                <?= h($comment['author_name']) ?>
                                 <?php if ($comment['is_admin']): ?>
                                     <span class="admin-badge">管理者</span>
                                 <?php endif; ?>

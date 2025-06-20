@@ -22,7 +22,7 @@ if (!$stmt->fetch()) {
     <header>
         <h1>表作成エディタ</h1>
         <div class="user-info">
-            学籍番号: <?php echo h($_SESSION['student_id']); ?>
+            ユーザー名: <?php echo htmlspecialchars($_SESSION['name']); ?>
             <a href="thread.php?id=<?php echo h($thread_id); ?>" class="btn">スレッドに戻る</a>
             <a href="logout.php" class="logout-btn">ログアウト</a>
         </div>
