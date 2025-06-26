@@ -107,7 +107,7 @@ unset($comment);
                                             ?>
                                             <?php if ($isImage): ?>
                                                 <a href="download.php?file_id=<?= $file['file_id'] ?>&preview=1" target="_blank">
-                                                    <img src="download.php?file_id=<?= $file['file_id'] ?>&preview=1" class="preview-image" alt="画像プレビュー">
+                                                    <img src="data:<?= $file['file_type'] ?>;base64,<?= $file['file_data'] ?>" class="preview-image" alt="画像プレビュー">
                                                 </a>
                                             <?php else: ?>
                                                 <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">

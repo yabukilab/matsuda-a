@@ -42,11 +42,12 @@ function save_uploaded_file($file, $comment_id)
 
   $file_name = $file['name'];
   $file_type = $file['type'];
-  $file_data = file_get_contents($file['tmp_name']);
-  $is_zip = false; // 画像のみのためZIPフラグは常にfalse
+  $file_size = $file['size'];
+  $file_content = base64_encode(file_get_contents($file['tmp_name']));
+  $is_zip = false;
 
-  $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_type, file_data, is_zip) VALUES (?, ?, ?, ?, ?)");
-  $stmt->execute([$comment_id, $file_name, $file_type, $file_data, $is_zip]);
+  $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_type, file_size, file_data, is_zip) VALUES (?, ?, ?, ?, ?, ?)");
+  $stmt->execute([$comment_id, $file_name, $file_type, $file_size, $file_content, $is_zip]);
 
   return $pdo->lastInsertId();
 }

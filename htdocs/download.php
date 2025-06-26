@@ -19,15 +19,16 @@ if (!$file) {
 
 // プレビュー表示
 if (isset($_GET['preview'])) {
-    // データベースに保存されたMIMEタイプを使用
+    // base64デコードして直接出力
+    $image_data = base64_decode($file['file_data']);
     header('Content-Type: ' . $file['file_type']);
-    echo $file['file_data'];
+    echo $image_data;
     exit;
 }
 
 // 通常のダウンロード
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="' . $file['file_name'] . '"');
-header('Content-Length: ' . strlen($file['file_data']));
-echo $file['file_data'];
+header('Content-Length: ' . $file['file_size']);
+echo base64_decode($file['file_data']);
 exit;

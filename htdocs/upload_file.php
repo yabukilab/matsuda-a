@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'name' => $_FILES['files']['name'][$key],
                         'tmp_name' => $tmp_name,
                         'type' => $_FILES['files']['type'][$key],
-                        'size' => $_FILES['files']['size'][$key]
+                        'size' => $_FILES['files']['size'][$key] // ファイルサイズ取得
                     ];
 
                     save_uploaded_file($file, $comment_id);
