@@ -19,7 +19,6 @@ if (!$file) {
 
 // プレビュー表示
 if (isset($_GET['preview'])) {
-    // base64デコードして直接出力
     $image_data = base64_decode($file['file_data']);
     header('Content-Type: ' . $file['file_type']);
     echo $image_data;
@@ -27,8 +26,9 @@ if (isset($_GET['preview'])) {
 }
 
 // 通常のダウンロード
+$file_data = base64_decode($file['file_data']);
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename="' . $file['file_name'] . '"');
 header('Content-Length: ' . $file['file_size']);
-echo base64_decode($file['file_data']);
+echo $file_data;
 exit;

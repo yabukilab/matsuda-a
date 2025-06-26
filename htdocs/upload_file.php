@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'name' => $_FILES['files']['name'][$key],
                         'tmp_name' => $tmp_name,
                         'type' => $_FILES['files']['type'][$key],
-                        'size' => $_FILES['files']['size'][$key] // ファイルサイズ取得
+                        'size' => $_FILES['files']['size'][$key]
                     ];
 
                     save_uploaded_file($file, $comment_id);
@@ -117,7 +117,7 @@ include 'includes/header.php';
 ?>
 <div class="container">
     <header>
-        <h1>ファイルアップロード</h1>
+        <h1>画像アップロード</h1>
         <div class="user-info">
             ユーザー名: <?php echo htmlspecialchars($_SESSION['name']); ?>
             <a href="thread.php?id=<?php echo htmlspecialchars($thread_id); ?>" class="btn">スレッドに戻る</a>
@@ -134,11 +134,11 @@ include 'includes/header.php';
 
         <div class="form-group">
             <label for="content">コメント:</label>
-            <textarea id="content" name="content" rows="3" placeholder="コメントを入力"></textarea>
+            <textarea id="content" name="content" rows="3" placeholder="コメントを入力"><?= h($content) ?></textarea>
         </div>
 
         <div class="form-group">
-            <label>画像選択（複数可・最大3GB）:</label>
+            <label>画像選択:</label>
             <input type="file" name="files[]" multiple accept="image/*">
             <p class="hint">
                 対応形式: JPEG, PNG, GIF, WebP<br>

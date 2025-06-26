@@ -88,32 +88,35 @@ unset($comment);
                             <?php endif; ?>
                         </div>
 
-                        <div class="comment-content"><?= nl2br(htmlspecialchars_decode(trim(h($comment['content'])))) ?>
-                        </div>
+                        <div class="comment-content"><?= nl2br(htmlspecialchars_decode(trim(h($comment['content'])))) ?></div>
 
                         <?php if (!empty($comment['files'])): ?>
                             <div class="comment-files">
-                                <strong>添付ファイル:</strong>
+                                <strong>添付画像:</strong>
                                 <?php foreach ($comment['files'] as $file): ?>
                                     <div class="file-item">
-                                        <?php if ($file['is_zip']): ?>
-                                            <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
-                                                ZIPファイル: <?= h($file['file_name']) ?>
-                                            </a>
-                                        <?php else: ?>
-                                            <?php
-                                            $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
-                                            $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif']);
-                                            ?>
-                                            <?php if ($isImage): ?>
+                                        <?php
+                                        $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
+                                        $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+                                        ?>
+                                        <?php if ($isImage): ?>
+                                            <div>
                                                 <a href="download.php?file_id=<?= $file['file_id'] ?>&preview=1" target="_blank">
-                                                    <img src="data:<?= $file['file_type'] ?>;base64,<?= $file['file_data'] ?>" class="preview-image" alt="画像プレビュー">
+                                                    <img src="data:<?= $file['file_type'] ?>;base64,<?= $file['file_data'] ?>" 
+                                                         class="preview-image" 
+                                                         alt="画像プレビュー"
+                                                         style="max-width: 400px; max-height: 300px; display: block;">
                                                 </a>
-                                            <?php else: ?>
+                                            </div>
+                                            <div>
                                                 <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
-                                                    <?= h($file['file_name']) ?>
+                                                    <?= h($file['file_name']) ?> (ダウンロード)
                                                 </a>
-                                            <?php endif; ?>
+                                            </div>
+                                        <?php else: ?>
+                                            <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
+                                                <?= h($file['file_name']) ?>
+                                            </a>
                                         <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
@@ -136,7 +139,7 @@ unset($comment);
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                     <button type="submit" class="btn">投稿</button>
                     <a href="upload_file.php?thread_id=<?= h($_GET['id']) ?>" class="btn">
-                        ファイルを添付する
+                        画像を添付する
                     </a>
                     <a href="table_editor.php?thread_id=<?= h($_GET['id']) ?>" class="btn">
                         表を作成する
@@ -149,16 +152,6 @@ unset($comment);
 
 <!-- スクロールボタン -->
 <div class="scroll-to-bottom" onclick="scrollToCommentForm()">↓</div>
-
-<script>
-    function scrollToCommentForm() {
-        const commentForm = document.querySelector('.comment-form');
-        commentForm.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-</script>
 
 <script>
     function scrollToCommentForm() {
@@ -188,5 +181,4 @@ unset($comment);
 </script>
 
 </body>
-
 </html>
