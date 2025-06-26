@@ -36,15 +36,17 @@ function format_size($bytes)
   return round($bytes, 2) . ' ' . $units[$pow];
 }
 
-function save_uploaded_file($file, $comment_id) {
-    global $pdo;
-    
-    $file_name = $file['name'];
-    $file_data = file_get_contents($file['tmp_name']);
-    $is_zip = (strtolower(pathinfo($file_name, PATHINFO_EXTENSION))) === 'zip';
-    
-    $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_data, is_zip) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$comment_id, $file_name, $file_data, $is_zip]);
-    
-    return $pdo->lastInsertId();
+function save_uploaded_file($file, $comment_id)
+{
+  global $pdo;
+
+  $file_name = $file['name'];
+  $file_type = $file['type'];
+  $file_data = file_get_contents($file['tmp_name']);
+  $is_zip = false; // 画像のみのためZIPフラグは常にfalse
+
+  $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_type, file_data, is_zip) VALUES (?, ?, ?, ?, ?)");
+  $stmt->execute([$comment_id, $file_name, $file_type, $file_data, $is_zip]);
+
+  return $pdo->lastInsertId();
 }

@@ -17,22 +17,10 @@ if (!$file) {
     exit;
 }
 
-// プレビュー表示（画像のみ）
+// プレビュー表示
 if (isset($_GET['preview'])) {
-    $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
-
-    if (in_array($ext, ['jpg', 'jpeg'])) {
-        header('Content-Type: image/jpeg');
-    } elseif ($ext === 'png') {
-        header('Content-Type: image/png');
-    } elseif ($ext === 'gif') {
-        header('Content-Type: image/gif');
-    } else {
-        // 画像以外のプレビュー要求はダウンロードにフォールバック
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . $file['file_name'] . '"');
-    }
-
+    // データベースに保存されたMIMEタイプを使用
+    header('Content-Type: ' . $file['file_type']);
     echo $file['file_data'];
     exit;
 }

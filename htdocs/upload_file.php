@@ -27,9 +27,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // ファイルエラーチェック
     $uploadErrors = [];
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
     if (!empty($_FILES['files'])) {
         foreach ($_FILES['files']['error'] as $key => $errorCode) {
-            if ($errorCode !== UPLOAD_ERR_OK && $errorCode !== UPLOAD_ERR_NO_FILE) {
+            $tmpName = $_FILES['files']['tmp_name'][$key];
+            $fileName = $_FILES['files']['name'][$key];
+            $fileType = $_FILES['files']['type'][$key];
+
+            // 画像ファイルチェック
+            if ($errorCode === UPLOAD_ERR_OK) {
+                // MIMEタイプ検証
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $detectedType = finfo_file($finfo, $tmpName);
+                finfo_close($finfo);
+
+                if (!in_array($detectedType, $allowedTypes)) {
+                    $uploadErrors[] = "不正なファイル形式: $fileName (許可形式: JPEG, PNG, GIF, WebP)";
+                    continue;
+                }
+            } else if ($errorCode !== UPLOAD_ERR_NO_FILE) {
                 $uploadErrors[] = getUploadErrorMessage($errorCode);
             }
         }
@@ -41,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // コメントとファイルの両方が空の場合のみエラー
     if (empty($content) && (empty($_FILES['files']) || array_sum($_FILES['files']['size']) === 0)) {
-        $error = "コメントかファイルのいずれかは必須です";
+        $error = "コメントか画像ファイルのいずれかは必須です";
     }
 
     if (empty($error)) {
@@ -62,9 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $file = [
                         'name' => $_FILES['files']['name'][$key],
                         'tmp_name' => $tmp_name,
+                        'type' => $_FILES['files']['type'][$key],
                         'size' => $_FILES['files']['size'][$key]
                     ];
-                    
+
                     save_uploaded_file($file, $comment_id);
                 }
             }
@@ -120,12 +138,11 @@ include 'includes/header.php';
         </div>
 
         <div class="form-group">
-            <label>ファイル選択（複数可・最大3GB）:</label>
-            <input type="file" name="files[]" multiple accept="*/*, .zip">
+            <label>画像選択（複数可・最大3GB）:</label>
+            <input type="file" name="files[]" multiple accept="image/*">
             <p class="hint">
-                対応形式: 全てのファイル形式（ZIPフォルダ可）<br>
-                フォルダをアップロードする場合はZIP形式で圧縮してください<br>
-                「開く」「キャンセル」の上のボタンを「すべてのファイル」にするとZIP以外もアップロードできます（ファイル形式は問いません）
+                対応形式: JPEG, PNG, GIF, WebP<br>
+                画像ファイルのみアップロード可能です
             </p>
         </div>
 
