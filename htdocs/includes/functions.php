@@ -36,21 +36,15 @@ function format_size($bytes)
   return round($bytes, 2) . ' ' . $units[$pow];
 }
 
-function handle_zip_upload($file, $comment_id)
-{
-  global $pdo;
-  $zip = new ZipArchive;
-  if ($zip->open($file['tmp_name']) === TRUE) {
-    $folder_name = uniqid() . '_' . preg_replace('/\.[^.]+$/', '', $file['name']);
-    $target_dir = UPLOAD_DIR . $folder_name . '/';
-
-    mkdir($target_dir, 0755, true);
-    $zip->extractTo($target_dir);
-    $zip->close();
-
-    $stmt = $pdo->prepare("INSERT INTO uploaded_folders (comment_id, folder_path) VALUES (?, ?)");
-    $stmt->execute([$comment_id, $target_dir]);
-    return $target_dir;
-  }
-  return false;
+function save_uploaded_file($file, $comment_id) {
+    global $pdo;
+    
+    $file_name = $file['name'];
+    $file_data = file_get_contents($file['tmp_name']);
+    $is_zip = (strtolower(pathinfo($file_name, PATHINFO_EXTENSION))) === 'zip';
+    
+    $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_data, is_zip) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$comment_id, $file_name, $file_data, $is_zip]);
+    
+    return $pdo->lastInsertId();
 }

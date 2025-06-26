@@ -16,7 +16,6 @@ define('DB_USER', $dbUser);
 define('DB_PASS', $dbPass);
 define('DB_NAME', $dbName);
 define('MAX_FILE_SIZE', 3221225472); // 3GB
-define('UPLOAD_DIR', 'uploads/');
 
 ini_set('memory_limit', '3G');
 set_time_limit(300);

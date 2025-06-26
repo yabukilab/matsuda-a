@@ -2,6 +2,7 @@
 require_once 'includes/config.php';
 require_once 'includes/functions.php';
 
+// ログイン確認
 if (!isset($_SESSION['student_id'])) {
     header("Location: index.php");
     exit;
@@ -58,28 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 foreach ($_FILES['files']['tmp_name'] as $key => $tmp_name) {
                     if ($_FILES['files']['error'][$key] !== UPLOAD_ERR_OK) continue;
 
-                    $file_name = $_FILES['files']['name'][$key];
-                    $file_size = $_FILES['files']['size'][$key];
-                    $file_tmp = $_FILES['files']['tmp_name'][$key];
-
-                    // ZIPファイル処理
-                    if (strtolower(pathinfo($file_name, PATHINFO_EXTENSION)) === 'zip') {
-                        handle_zip_upload([
-                            'name' => $file_name,
-                            'tmp_name' => $file_tmp,
-                            'size' => $file_size
-                        ], $comment_id);
-                        continue;
-                    }
-
-                    // 通常ファイル処理
-                    $new_file_name = uniqid() . '_' . preg_replace('/[^a-zA-Z0-9\.]/', '_', $file_name);
-                    $upload_path = UPLOAD_DIR . $new_file_name;
-
-                    if (move_uploaded_file($file_tmp, $upload_path)) {
-                        $stmt = $pdo->prepare("UPDATE comments SET file_path = CONCAT(COALESCE(file_path, ''), ?) WHERE comment_id = ?");
-                        $stmt->execute([$upload_path . "\n", $comment_id]);
-                    }
+                    $file = [
+                        'name' => $_FILES['files']['name'][$key],
+                        'tmp_name' => $tmp_name,
+                        'size' => $_FILES['files']['size'][$key]
+                    ];
+                    
+                    save_uploaded_file($file, $comment_id);
                 }
             }
 
@@ -111,8 +97,6 @@ function getUploadErrorMessage($code)
 
 include 'includes/header.php';
 ?>
-<!-- 以下HTML部分は同じ -->
-
 <div class="container">
     <header>
         <h1>ファイルアップロード</h1>

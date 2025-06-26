@@ -2,6 +2,7 @@
 require_once 'includes/config.php';
 require_once 'includes/functions.php';
 
+// ログイン確認
 if (!isset($_SESSION['student_id'])) {
     header("Location: index.php");
     exit;
@@ -33,14 +34,10 @@ $stmt->execute([$_GET['id']]);
 $comments = $stmt->fetchAll();
 
 foreach ($comments as &$comment) {
-    $stmt = $pdo->prepare("SELECT folder_path FROM uploaded_folders WHERE comment_id = ?");
+    // ファイル情報取得
+    $stmt = $pdo->prepare("SELECT * FROM uploaded_files WHERE comment_id = ?");
     $stmt->execute([$comment['comment_id']]);
-    $comment['folders'] = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-    $comment['files'] = [];
-    if (!empty($comment['file_path'])) {
-        $comment['files'] = explode("\n", trim($comment['file_path']));
-    }
+    $comment['files'] = $stmt->fetchAll();
 }
 unset($comment);
 ?>
@@ -94,50 +91,31 @@ unset($comment);
                         <div class="comment-content"><?= nl2br(htmlspecialchars_decode(trim(h($comment['content'])))) ?>
                         </div>
 
-                        <?php if (!empty($comment['files']) || !empty($comment['folders'])): ?>
+                        <?php if (!empty($comment['files'])): ?>
                             <div class="comment-files">
                                 <strong>添付ファイル:</strong>
                                 <?php foreach ($comment['files'] as $file): ?>
-                                    <?php if (!empty($file)): ?>
-                                        <?php
-                                        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-                                        $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif']);
-                                        ?>
-                                        <div class="file-item">
-                                            <?php if ($isImage): ?>
-                                                <a href="<?= h($file) ?>" target="_blank">
-                                                    <img src="<?= h($file) ?>" class="preview-image" alt="画像プレビュー">
-                                                </a>
-                                            <?php else: ?>
-                                                <a href="<?= h($file) ?>" download>
-                                                    <?= basename(h($file)) ?>
-                                                </a>
-                                            <?php endif; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-
-                                <?php foreach ($comment['folders'] as $folder): ?>
-                                    <?php $files = glob(rtrim($folder, '/') . '/*'); ?>
-                                    <?php foreach ($files as $file): ?>
-                                        <?php if (is_file($file)): ?>
+                                    <div class="file-item">
+                                        <?php if ($file['is_zip']): ?>
+                                            <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
+                                                ZIPファイル: <?= h($file['file_name']) ?>
+                                            </a>
+                                        <?php else: ?>
                                             <?php
-                                            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                                            $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
                                             $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif']);
                                             ?>
-                                            <div class="file-item">
-                                                <?php if ($isImage): ?>
-                                                    <a href="<?= h($file) ?>" target="_blank">
-                                                        <img src="<?= h($file) ?>" class="preview-image" alt="フォルダ内画像">
-                                                    </a>
-                                                <?php else: ?>
-                                                    <a href="<?= h($file) ?>" download>
-                                                        <?= basename(h($file)) ?> (フォルダ内)
-                                                    </a>
-                                                <?php endif; ?>
-                                            </div>
+                                            <?php if ($isImage): ?>
+                                                <a href="download.php?file_id=<?= $file['file_id'] ?>&preview=1" target="_blank">
+                                                    <img src="download.php?file_id=<?= $file['file_id'] ?>&preview=1" class="preview-image" alt="画像プレビュー">
+                                                </a>
+                                            <?php else: ?>
+                                                <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
+                                                    <?= h($file['file_name']) ?>
+                                                </a>
+                                            <?php endif; ?>
                                         <?php endif; ?>
-                                    <?php endforeach; ?>
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
                         <?php endif; ?>
