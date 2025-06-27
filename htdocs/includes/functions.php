@@ -43,12 +43,20 @@ function save_uploaded_file($file, $comment_id)
   $file_name = $file['name'];
   $file_type = $file['type'];
   $file_size = $file['size'];
-  // ファイル内容をbase64エンコードして取得
   $file_content = base64_encode(file_get_contents($file['tmp_name']));
-  $is_zip = false;
+
+  // 拡張子やファイル内容からzipファイルかどうかを判定したい場合はここで実装
+  $is_zip = 0; // ← 修正ポイント：falseや''ではなく明示的な0（MySQLのBOOLEAN/TINYINT対応）
 
   $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_type, file_size, file_data, is_zip) VALUES (?, ?, ?, ?, ?, ?)");
-  $stmt->execute([$comment_id, $file_name, $file_type, $file_size, $file_content, $is_zip]);
+  $stmt->execute([
+    $comment_id,
+    $file_name,
+    $file_type,
+    $file_size,
+    $file_content,
+    $is_zip
+  ]);
 
   return $pdo->lastInsertId();
 }
