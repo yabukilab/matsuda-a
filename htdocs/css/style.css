@@ -558,6 +558,25 @@ legend {
     left: 120%;
 }
 
+/* パルスアニメーション */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(77, 161, 205, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(77, 161, 205, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(77, 161, 205, 0);
+    }
+}
+
+.login-container .btn {
+    animation: pulse 2s infinite;
+}
+
 /* ラジオボタン */
 input[type="radio"] {
     margin-right: 8px;
