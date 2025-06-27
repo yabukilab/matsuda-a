@@ -21,34 +21,89 @@ if (!$stmt->fetch()) {
 $error = '';
 $content = '';
 
+// ファイルアップロード処理用の新関数
+function save_uploaded_file_chunked($file, $comment_id)
+{
+    global $pdo;
+
+    $file_name = $file['name'];
+    $file_type = $file['type'];
+    $file_size = $file['size'];
+
+    // ファイルをチャンクで読み込み
+    $chunkSize = 2 * 1024 * 1024; // 2MBごと
+    $file_data = '';
+    $handle = fopen($file['tmp_name'], 'rb');
+
+    if (!$handle) {
+        throw new Exception("ファイルを開けません");
+    }
+
+    while (!feof($handle)) {
+        $chunk = fread($handle, $chunkSize);
+        if ($chunk === false) {
+            fclose($handle);
+            throw new Exception("ファイルの読み込み中にエラーが発生しました");
+        }
+        $file_data .= $chunk;
+    }
+
+    fclose($handle);
+
+    $base64_data = base64_encode($file_data);
+
+    $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_type, file_size, file_data, is_zip) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$comment_id, $file_name, $file_type, $file_size, $base64_data, false]);
+
+    return $pdo->lastInsertId();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // コンテンツの取得（空文字を許可）
     $content = trim($_POST['content'] ?? '');
 
-    // ファイルエラーチェック
     $uploadErrors = [];
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 
+    $filesToProcess = [];
+
     if (!empty($_FILES['files'])) {
         foreach ($_FILES['files']['error'] as $key => $errorCode) {
+            if ($errorCode === UPLOAD_ERR_NO_FILE) {
+                continue;
+            }
+
+            if ($errorCode !== UPLOAD_ERR_OK) {
+                $uploadErrors[] = getUploadErrorMessage($errorCode);
+                continue;
+            }
+
             $tmpName = $_FILES['files']['tmp_name'][$key];
             $fileName = $_FILES['files']['name'][$key];
             $fileType = $_FILES['files']['type'][$key];
+            $fileSize = $_FILES['files']['size'][$key];
 
-            // 画像ファイルチェック
-            if ($errorCode === UPLOAD_ERR_OK) {
-                // MIMEタイプ検証
-                $finfo = finfo_open(FILEINFO_MIME_TYPE);
-                $detectedType = finfo_file($finfo, $tmpName);
-                finfo_close($finfo);
+            // MIMEタイプ検証
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $detectedType = finfo_file($finfo, $tmpName);
+            finfo_close($finfo);
 
-                if (!in_array($detectedType, $allowedTypes)) {
-                    $uploadErrors[] = "不正なファイル形式: $fileName (許可形式: JPEG, PNG, GIF, WebP)";
-                    continue;
-                }
-            } else if ($errorCode !== UPLOAD_ERR_NO_FILE) {
-                $uploadErrors[] = getUploadErrorMessage($errorCode);
+            if (!in_array($detectedType, $allowedTypes)) {
+                $uploadErrors[] = "不正なファイル形式: $fileName (許可形式: JPEG, PNG, GIF, WebP)";
+                continue;
             }
+
+            // ファイルサイズ検証
+            if ($fileSize > MAX_FILE_SIZE) {
+                $uploadErrors[] = "ファイルサイズが大きすぎます: $fileName (最大" . format_size(MAX_FILE_SIZE) . ")";
+                continue;
+            }
+
+            $filesToProcess[] = [
+                'name' => $fileName,
+                'tmp_name' => $tmpName,
+                'type' => $fileType,
+                'size' => $fileSize
+            ];
         }
     }
 
@@ -56,34 +111,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error .= implode("<br>", $uploadErrors);
     }
 
-    // コメントとファイルの両方が空の場合のみエラー
-    if (empty($content) && (empty($_FILES['files']) || array_sum($_FILES['files']['size']) === 0)) {
+    if (empty($content) && empty($filesToProcess)) {
         $error = "コメントか画像ファイルのいずれかは必須です";
     }
 
     if (empty($error)) {
         try {
-            // トランザクション開始
             $pdo->beginTransaction();
 
-            // コメント作成（空文字を許可）
+            // コメント作成
             $stmt = $pdo->prepare("INSERT INTO comments (thread_id, student_id, content) VALUES (?, ?, ?)");
             $stmt->execute([$thread_id, $_SESSION['student_id'], $content]);
             $comment_id = $pdo->lastInsertId();
 
             // ファイルアップロード処理
-            if (!empty($_FILES['files'])) {
-                foreach ($_FILES['files']['tmp_name'] as $key => $tmp_name) {
-                    if ($_FILES['files']['error'][$key] !== UPLOAD_ERR_OK) continue;
-
-                    $file = [
-                        'name' => $_FILES['files']['name'][$key],
-                        'tmp_name' => $tmp_name,
-                        'type' => $_FILES['files']['type'][$key],
-                        'size' => $_FILES['files']['size'][$key]
-                    ];
-
-                    save_uploaded_file($file, $comment_id);
+            if (!empty($filesToProcess)) {
+                foreach ($filesToProcess as $file) {
+                    save_uploaded_file_chunked($file, $comment_id);
                 }
             }
 
@@ -93,12 +137,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (Exception $e) {
             $pdo->rollBack();
             error_log("Upload error: " . $e->getMessage());
-            $error = "ファイルのアップロードに失敗しました";
+            $error = "ファイルのアップロードに失敗しました: " . $e->getMessage();
         }
     }
 }
 
-// エラーメッセージ表示関数
 function getUploadErrorMessage($code)
 {
     $errors = [
