@@ -6,12 +6,6 @@ GRANT ALL PRIVILEGES ON mydb.* TO 'testuser'@'localhost';
 -- (2) 使用するデータベースの選択
 USE mydb;
 
--- (3) テーブル削除（順番に注意）
-DROP TABLE IF EXISTS uploaded_files;
-DROP TABLE IF EXISTS comments;
-DROP TABLE IF EXISTS threads;
-DROP TABLE IF EXISTS users;
-
 -- (4) テーブル定義
 
 -- ユーザー情報
