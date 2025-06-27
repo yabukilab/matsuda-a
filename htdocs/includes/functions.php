@@ -60,3 +60,25 @@ function save_uploaded_file($file, $comment_id)
 
   return $pdo->lastInsertId();
 }
+
+function get_file_icon($filename)
+{
+  $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+  $icons = [
+    'pdf'  => '📄',
+    'doc'  => '📝',
+    'docx' => '📝',
+    'xls'  => '📊',
+    'xlsx' => '📊',
+    'zip'  => '📦',
+    'txt'  => '📑',
+    'jpg'  => '🖼️',
+    'jpeg' => '🖼️',
+    'png'  => '🖼️',
+    'gif'  => '🖼️',
+    'webp' => '🖼️'
+  ];
+
+  return $icons[$ext] ?? '📁';
+}

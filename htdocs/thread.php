@@ -92,17 +92,19 @@ unset($comment);
 
                         <?php if (!empty($comment['files'])): ?>
                             <div class="comment-files">
-                                <strong>添付画像:</strong>
+                                <strong>添付ファイル:</strong>
                                 <?php foreach ($comment['files'] as $file): ?>
                                     <div class="file-item">
                                         <?php
                                         $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
                                         $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+                                        $isPdf = ($ext === 'pdf');
                                         ?>
+
                                         <?php if ($isImage): ?>
+                                            <!-- 画像表示 -->
                                             <div>
                                                 <a href="download.php?file_id=<?= $file['file_id'] ?>&preview=1" target="_blank">
-                                                    <!-- base64データを直接表示 -->
                                                     <img src="data:<?= $file['file_type'] ?>;base64,<?= $file['file_data'] ?>"
                                                         class="preview-image"
                                                         alt="画像プレビュー"
@@ -114,11 +116,28 @@ unset($comment);
                                                     <?= h($file['file_name']) ?> (ダウンロード)
                                                 </a>
                                             </div>
+
+                                        <?php elseif ($isPdf): ?>
+                                            <!-- PDFプレビュー -->
+                                            <div>
+                                                <a href="download.php?file_id=<?= $file['file_id'] ?>&preview=1" target="_blank">
+                                                    PDFプレビュー
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
+                                                    <?= h($file['file_name']) ?> (ダウンロード)
+                                                </a>
+                                            </div>
+
                                         <?php else: ?>
+                                            <!-- その他のファイル -->
                                             <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
                                                 <?= h($file['file_name']) ?>
                                             </a>
                                         <?php endif; ?>
+
+                                        <span class="file-size">(<?= format_size($file['file_size']) ?>)</span>
                                     </div>
                                 <?php endforeach; ?>
                             </div>

@@ -19,10 +19,22 @@ if (!$file) {
 
 // プレビュー表示
 if (isset($_GET['preview'])) {
-    $image_data = base64_decode($file['file_data']);
-    header('Content-Type: ' . $file['file_type']);
-    echo $image_data;
-    exit;
+    $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
+
+    // 画像プレビュー
+    if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+        $image_data = base64_decode($file['file_data']);
+        header('Content-Type: ' . $file['file_type']);
+        echo $image_data;
+        exit;
+    }
+    // PDFプレビュー
+    elseif ($ext === 'pdf') {
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $file['file_name'] . '"');
+        echo base64_decode($file['file_data']);
+        exit;
+    }
 }
 
 // 通常のダウンロード

@@ -23,13 +23,12 @@ $content = '';
 
 function save_uploaded_file_chunked($file, $comment_id)
 {
-    global $pdo; // 追加
+    global $pdo;
 
     $file_name = $file['name'];
     $file_type = $file['type'];
     $file_size = $file['size'];
 
-    // メモリ制限付きで読み込み
     $file_data = file_get_contents(
         $file['tmp_name'],
         false,
@@ -39,7 +38,6 @@ function save_uploaded_file_chunked($file, $comment_id)
     );
     $base64_data = base64_encode($file_data);
 
-    // 修正箇所: false → 0
     $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_type, file_size, file_data, is_zip) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->execute([
         $comment_id,
@@ -47,7 +45,7 @@ function save_uploaded_file_chunked($file, $comment_id)
         $file_type,
         $file_size,
         $base64_data,
-        0 // ここを 0 に変更
+        0
     ]);
 
     return $pdo->lastInsertId();
@@ -56,10 +54,25 @@ function save_uploaded_file_chunked($file, $comment_id)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content = trim($_POST['content'] ?? '');
 
-    $uploadErrors = [];
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    $allowedTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'image/webp',
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/zip',
+        'text/plain',
+        'application/octet-stream'
+    ];
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'zip', 'txt'];
+    $dangerousExtensions = ['php', 'phtml', 'html', 'htm', 'js', 'exe', 'bat', 'sh'];
 
     $filesToProcess = [];
+    $uploadErrors = [];
 
     if (!empty($_FILES['files'])) {
         foreach ($_FILES['files']['error'] as $key => $errorCode) {
@@ -76,18 +89,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fileName = $_FILES['files']['name'][$key];
             $fileType = $_FILES['files']['type'][$key];
             $fileSize = $_FILES['files']['size'][$key];
+            $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-            // MIMEタイプ検証
             $finfo = finfo_open(FILEINFO_MIME_TYPE);
             $detectedType = finfo_file($finfo, $tmpName);
             finfo_close($finfo);
 
-            if (!in_array($detectedType, $allowedTypes)) {
-                $uploadErrors[] = "不正なファイル形式: $fileName (許可形式: JPEG, PNG, GIF, WebP)";
+            // 危険な拡張子のブロック
+            if (in_array($fileExtension, $dangerousExtensions)) {
+                $uploadErrors[] = "セキュリティ上、このファイルタイプはアップロードできません: $fileName";
                 continue;
             }
 
-            // ファイルサイズ検証
+            // MIMEタイプ・拡張子の検証
+            if (!in_array($detectedType, $allowedTypes) || !in_array($fileExtension, $allowedExtensions)) {
+                $uploadErrors[] = "不正なファイル形式: $fileName (許可形式: " . implode(', ', $allowedExtensions) . ")";
+                continue;
+            }
+
             if ($fileSize > MAX_FILE_SIZE) {
                 $uploadErrors[] = "ファイルサイズが大きすぎます: $fileName (最大" . format_size(MAX_FILE_SIZE) . ")";
                 continue;
@@ -107,23 +126,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($content) && empty($filesToProcess)) {
-        $error = "コメントか画像ファイルのいずれかは必須です";
+        $error = "コメントかファイルのいずれかは必須です";
     }
 
     if (empty($error)) {
         try {
             $pdo->beginTransaction();
 
-            // コメント作成
             $stmt = $pdo->prepare("INSERT INTO comments (thread_id, student_id, content) VALUES (?, ?, ?)");
             $stmt->execute([$thread_id, $_SESSION['student_id'], $content]);
             $comment_id = $pdo->lastInsertId();
 
-            // ファイルアップロード処理
-            if (!empty($filesToProcess)) {
-                foreach ($filesToProcess as $file) {
-                    save_uploaded_file_chunked($file, $comment_id);
-                }
+            foreach ($filesToProcess as $file) {
+                save_uploaded_file_chunked($file, $comment_id);
             }
 
             $pdo->commit();
@@ -155,32 +170,32 @@ include 'includes/header.php';
 ?>
 <div class="container">
     <header>
-        <h1>画像アップロード</h1>
+        <h1>ファイルアップロード</h1>
         <div class="user-info">
-            ユーザー名: <?php echo htmlspecialchars($_SESSION['name']); ?>
-            <a href="thread.php?id=<?php echo htmlspecialchars($thread_id); ?>" class="btn">スレッドに戻る</a>
+            ユーザー名: <?= htmlspecialchars($_SESSION['name']); ?>
+            <a href="thread.php?id=<?= htmlspecialchars($thread_id); ?>" class="btn">スレッドに戻る</a>
             <a href="logout.php" class="logout-btn">ログアウト</a>
         </div>
     </header>
 
-    <?php if (isset($error)): ?>
-        <div class="error"><?php echo htmlspecialchars($error); ?></div>
+    <?php if (!empty($error)): ?>
+        <div class="error"><?= htmlspecialchars($error); ?></div>
     <?php endif; ?>
 
     <form method="post" enctype="multipart/form-data">
-        <input type="hidden" name="thread_id" value="<?= h($thread_id) ?>">
+        <input type="hidden" name="thread_id" value="<?= htmlspecialchars($thread_id); ?>">
 
         <div class="form-group">
             <label for="content">コメント:</label>
-            <textarea id="content" name="content" rows="3" placeholder="コメントを入力"><?= h($content) ?></textarea>
+            <textarea id="content" name="content" rows="3" placeholder="コメントを入力"><?= htmlspecialchars($content); ?></textarea>
         </div>
 
         <div class="form-group">
-            <label>画像選択:</label>
-            <input type="file" name="files[]" multiple accept="image/*">
+            <label>ファイル選択:</label>
+            <input type="file" name="files[]" multiple accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.doc,.docx,.xls,.xlsx,.zip,.txt">
             <p class="hint">
-                対応形式: JPEG, PNG, GIF, WebP<br>
-                画像ファイルのみアップロード可能です
+                対応形式: JPG, PNG, GIF, WebP, PDF, Word, Excel, ZIP, TXT（危険な形式はブロックされます）<br>
+                最大ファイルサイズ: <?= format_size(MAX_FILE_SIZE) ?>
             </p>
         </div>
 
