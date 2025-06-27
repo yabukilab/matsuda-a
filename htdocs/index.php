@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include 'includes/header.php'; ?>
 <div class="login-container">
-    <h1>研究室共有システム</h1>
+    <h1>研究室共有<br>システム</h1>
     <?php if (isset($error)): ?>
         <div class="error"><?php echo htmlspecialchars($error, ENT_QUOTES); ?></div>
     <?php endif; ?>
