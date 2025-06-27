@@ -13,6 +13,8 @@
     --text-light: #757575;
     --border: #dce6f0;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --paper: #f8f8f8;
+    /* 対象.txtから追加 */
 }
 
 * {
@@ -39,9 +41,13 @@ body {
     box-shadow: var(--shadow);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+    /* 対象.txtから追加 */
+    overflow: hidden;
+    /* 対象.txtから追加 */
 }
 
-/* ヘッダー */
+/* タイプライター風ヘッダー追加 */
 header {
     display: flex;
     flex-wrap: wrap;
@@ -50,6 +56,18 @@ header {
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--border);
+    position: relative;
+    /* 対象.txtから追加 */
+}
+
+header::before {
+    content: ">";
+    /* 対象.txtのコンソール風要素 */
+    position: absolute;
+    left: -20px;
+    top: 5px;
+    color: var(--primary);
+    font-weight: bold;
 }
 
 h1,
@@ -68,8 +86,26 @@ h1 {
     -webkit-text-fill-color: transparent;
     color: transparent;
     padding-bottom: 10px;
+    position: relative;
+    /* 対象.txtから追加 */
 }
 
+h1::after {
+    content: "";
+    /* 対象.txtの点線下線 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: repeating-linear-gradient(to right,
+            transparent,
+            transparent 5px,
+            var(--border) 5px,
+            var(--border) 10px);
+}
+
+/* ユーザー情報 - コンソール風調整 */
 .user-info {
     font-size: 0.95rem;
     color: var(--text-light);
@@ -80,6 +116,10 @@ h1 {
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
+    border: 1px solid var(--border);
+    /* 対象.txtから追加 */
+    font-family: 'Courier New', Courier, monospace;
+    /* 対象.txtから追加 */
 }
 
 /* ボタン */
@@ -162,6 +202,8 @@ h1 {
     font-size: 1rem;
     transition: all 0.3s;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-family: 'Courier New', Courier, monospace;
+    /* 対象.txtから追加 */
 }
 
 .form-group input:focus,
@@ -170,6 +212,8 @@ h1 {
     border-color: var(--accent);
     outline: none;
     box-shadow: 0 0 0 3px rgba(77, 161, 205, 0.2);
+    background: #ffffe0;
+    /* 対象.txtから追加 */
 }
 
 .form-group textarea {
@@ -207,9 +251,10 @@ legend {
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    border: 1px solid var(--border);
+    /* 対象.txtから追加 */
 }
 
-/* ホバーエフェクトを無効化 */
 .thread-item:hover {
     transform: none;
     box-shadow: var(--shadow);
@@ -263,7 +308,7 @@ legend {
     align-self: flex-end;
 }
 
-/* コメントセクション */
+/* コメントセクション - コンソール要素追加 */
 .comment-section {
     margin-top: 40px;
 }
@@ -275,6 +320,18 @@ legend {
     border-radius: 14px;
     box-shadow: var(--shadow);
     border-top: 3px solid var(--light);
+    position: relative;
+    /* 対象.txtから追加 */
+}
+
+.comment-item::before {
+    content: "//";
+    /* 対象.txtのコンソール風要素 */
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    color: var(--text-light);
+    font-size: 0.8rem;
 }
 
 .comment-header {
@@ -303,6 +360,10 @@ legend {
     margin: 20px 0;
     line-height: 1.7;
     font-size: 1.05rem;
+    white-space: pre-wrap;
+    /* 対象.txtから追加 */
+    font-family: 'Courier New', Courier, monospace;
+    /* 対象.txtから追加 */
 }
 
 .comment-content table {
@@ -342,7 +403,7 @@ legend {
     text-decoration: underline;
 }
 
-/* ファイル表示 */
+/* ファイル表示 - 古いコンピュータUI風調整 */
 .comment-files {
     margin-top: 25px;
     padding-top: 20px;
@@ -354,6 +415,18 @@ legend {
     padding: 15px;
     background: var(--light);
     border-radius: 10px;
+    display: flex;
+    /* 対象.txtから追加 */
+    align-items: center;
+    /* 対象.txtから追加 */
+    gap: 10px;
+    /* 対象.txtから追加 */
+}
+
+.file-item::before {
+    content: "📎";
+    /* 対象.txtのアイコン */
+    margin-right: 5px;
 }
 
 .file-item a {
@@ -386,6 +459,10 @@ legend {
     margin-bottom: 25px;
     border-left: 3px solid var(--danger);
     font-weight: 500;
+    border: 1px solid var(--border);
+    /* 対象.txtから追加 */
+    font-family: 'Courier New', Courier, monospace;
+    /* 対象.txtから追加 */
 }
 
 .success {
@@ -396,6 +473,10 @@ legend {
     margin-bottom: 25px;
     border-left: 3px solid var(--success);
     font-weight: 500;
+    border: 1px solid var(--border);
+    /* 対象.txtから追加 */
+    font-family: 'Courier New', Courier, monospace;
+    /* 対象.txtから追加 */
 }
 
 /* 管理者バッジを控えめに */
@@ -521,7 +602,6 @@ legend {
     color: transparent;
 }
 
-/* ログインボタンのスタイルを強調 */
 .login-container .btn {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     padding: 16px 32px;
@@ -581,6 +661,21 @@ legend {
 /* ラジオボタン */
 input[type="radio"] {
     margin-right: 8px;
+}
+
+/* ページ区切り線（対象.txtから追加） */
+.container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: repeating-linear-gradient(to right,
+            transparent,
+            transparent 5px,
+            var(--border) 5px,
+            var(--border) 10px);
 }
 
 /* スマートフォン対応 */

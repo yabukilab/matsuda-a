@@ -8,7 +8,16 @@
 ├── js/
 │   └── table_editor.js
 ├── uploads/
-│   └── .htaccess
+│   └── uploads.htaccess
+├── introduction/
+│   ├── introduction_index.png
+│   ├── introduction_register.png
+│   ├── introduction_account_edit.png
+│   ├── introduction_home.png
+│   ├── introduction_create_thread.png
+│   ├── introduction_thread.png
+│   ├── introduction_table_editor.png
+│   └── introduction_upload_file.png
 ├── index.php
 ├── home.php
 ├── create_thread.php
