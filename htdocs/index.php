@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="student_id">学籍番号 (7桁):</label>
             <input type="text" id="student_id" name="student_id" pattern="\d{7}" required
                 placeholder="例: 0123456" class="login-input">
-            <p class="hint">※7桁以下の場合は前に0を追加してください</p>
+            <p class="hint">※7桁以下の場合は前に0を追加</p>
         </div>
 
         <div class="form-group">

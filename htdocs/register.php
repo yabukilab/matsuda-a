@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="student_id" name="student_id"
                 pattern="\d{7}" required
                 value="<?php echo htmlspecialchars($student_id); ?>">
-            ※7桁以下の場合は前に0を追加してください
+            ※7桁以下の場合は前に0を追加
         </div>
 
         <div class="form-group">
