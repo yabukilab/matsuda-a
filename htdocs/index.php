@@ -2,7 +2,8 @@
 require_once 'includes/config.php';
 require_once 'includes/functions.php';
 
-// ...ログイン処理部分を変更
+// セッション開始
+session_start();
 
 // ログイン処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user && verify_password($password, $user['password_hash'])) {
             $_SESSION['student_id'] = $student_id;
-            $_SESSION['name'] = $user['name']; // ユーザー名をセッションに保存
+            $_SESSION['name'] = $user['name'];
             header("Location: home.php");
             exit;
         } else {
@@ -37,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <?php if (isset($_SESSION['success_message'])): ?>
-        <div class="success" style="background-color: #dff0d8; color: #3c763d; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+        <div class="success">
             <?php echo htmlspecialchars($_SESSION['success_message']); ?>
         </div>
         <?php unset($_SESSION['success_message']); ?>
@@ -46,18 +47,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="post">
         <div class="form-group">
             <label for="student_id">学籍番号 (7桁):</label>
-            <input type="text" id="student_id" name="student_id" pattern="\d{7}" required>
-            ※7桁以下の場合は前に0を追加してください
+            <input type="text" id="student_id" name="student_id" pattern="\d{7}" required
+                placeholder="例: 0123456" class="login-input">
+            <p class="hint">※7桁以下の場合は前に0を追加してください</p>
         </div>
 
         <div class="form-group">
             <label for="password">パスワード:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" required
+                placeholder="パスワードを入力" class="login-input">
         </div>
 
-        <button type="submit">ログイン</button>
+        <button type="submit" class="btn login-btn">ログイン</button>
     </form>
-    <div style="margin-top: 20px; text-align: center;">
+    <div class="register-link">
         <a href="register.php">アカウント作成はこちら</a>
     </div>
 </div>
