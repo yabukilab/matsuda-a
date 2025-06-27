@@ -10,15 +10,11 @@ body {
 
 .container {
     max-width: 90%;
-    /* 変更 */
     margin: 0 auto;
     padding: 1.5%;
-    /* 変更 */
     background-color: #fff;
     box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.1);
-    /* 変更 */
     border-radius: 0.8vw;
-    /* 変更 */
 }
 
 /* ヘッダー */
@@ -27,11 +23,16 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2.5%;
-    /* 変更 */
     padding-bottom: 1.5%;
-    /* 変更 */
     border-bottom: 0.2vw solid #e0e0e0;
-    /* 変更 */
+}
+
+.user-info-wrapper {
+    display: flex;
+    gap: 1%;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .user-info {
@@ -44,17 +45,14 @@ header {
 .btn {
     display: inline-block;
     padding: 1% 1.8%;
-    /* 変更 */
     background-color: #4CAF50;
     color: white;
     text-decoration: none;
     border-radius: 0.6vw;
-    /* 変更 */
     border: none;
     cursor: pointer;
     font-size: 0.95em;
     margin: 0.5% 0;
-    /* 変更 */
     transition: background-color 0.3s;
 }
 
@@ -63,14 +61,15 @@ header {
 }
 
 .delete-btn {
+    display: inline-block;
     background-color: #f44336;
     color: white;
-    padding: 0.5% 1%;
-    /* 変更 */
+    padding: 0.5% 1.2%;
     border-radius: 0.4vw;
-    /* 変更 */
     text-decoration: none;
     font-size: 0.85em;
+    margin-left: 1%;
+    white-space: nowrap;
 }
 
 .delete-btn:hover {
@@ -80,11 +79,8 @@ header {
 .logout-btn {
     background-color: #ebebeb;
     margin-left: 1%;
-    /* 変更 */
     padding: 0.8% 1.5%;
-    /* 変更 */
     box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);
-    /* 変更 */
 }
 
 .logout-btn:hover {
@@ -94,13 +90,11 @@ header {
 /* フォーム */
 .form-group {
     margin-bottom: 2%;
-    /* 変更 */
 }
 
 .form-group label {
     display: block;
     margin-bottom: 0.8%;
-    /* 変更 */
     font-weight: bold;
     color: #444;
 }
@@ -111,11 +105,8 @@ header {
 .form-group select {
     width: 100%;
     padding: 1%;
-    /* 変更 */
     border: 0.1vw solid #ddd;
-    /* 変更 */
     border-radius: 0.6vw;
-    /* 変更 */
     box-sizing: border-box;
     background-color: #f9f9f9;
     transition: border 0.3s;
@@ -131,40 +122,32 @@ header {
 
 .form-group textarea {
     min-height: 12vw;
-    /* 変更 */
     resize: vertical;
 }
 
 .inline-form {
-    display: inline;
+    display: inline-block;
     margin-left: 1%;
-    /* 変更 */
+    vertical-align: middle;
 }
 
 /* スレッド一覧 */
 .thread-list {
     margin-top: 2.5%;
-    /* 変更 */
 }
 
 .thread-item {
     padding: 1.8%;
-    /* 変更 */
     margin-bottom: 1.8%;
-    /* 変更 */
     background-color: #fff;
     border-radius: 0.6vw;
-    /* 変更 */
     border-left: 0.5vw solid #4CAF50;
-    /* 変更 */
     box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
-    /* 変更 */
     transition: transform 0.2s;
 }
 
 .thread-item:hover {
     transform: translateY(-0.2vw);
-    /* 変更 */
 }
 
 .thread-header {
@@ -172,7 +155,6 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.2%;
-    /* 変更 */
 }
 
 .thread-header h3 {
@@ -194,9 +176,7 @@ header {
     background-color: #e3f2fd;
     color: #1a237e;
     padding: 0.5% 1.2%;
-    /* 変更 */
     border-radius: 1.2vw;
-    /* 変更 */
     font-weight: 600;
 }
 
@@ -205,23 +185,17 @@ header {
     color: #666;
     display: flex;
     gap: 1%;
-    /* 変更 */
     flex-wrap: wrap;
 }
 
 /* コメント */
 .comment-item {
     padding: 1.8%;
-    /* 変更 */
     margin-bottom: 1.8%;
-    /* 変更 */
     background-color: #fff;
     border-radius: 0.6vw;
-    /* 変更 */
     border-left: 0.5vw solid #2196F3;
-    /* 変更 */
     box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
-    /* 変更 */
 }
 
 .comment-header {
@@ -229,11 +203,9 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.2%;
-    /* 変更 */
     font-size: 0.9em;
     flex-wrap: wrap;
     gap: 1%;
-    /* 変更 */
 }
 
 .comment-author {
@@ -247,7 +219,6 @@ header {
 
 .comment-content {
     margin: 0.8% 0;
-    /* 変更 */
     white-space: pre-wrap;
     word-wrap: break-word;
     line-height: 0.8;
@@ -256,13 +227,9 @@ header {
 .scroll-to-bottom {
     position: fixed;
     bottom: 3%;
-    /* 変更 */
     right: 3%;
-    /* 変更 */
     width: 5vw;
-    /* 変更 */
     height: 5vw;
-    /* 変更 */
     border-radius: 50%;
     background-color: #007bff;
     color: white;
@@ -271,7 +238,6 @@ header {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.2);
-    /* 変更 */
     z-index: 1000;
     transition: background-color 0.3s, transform 0.3s;
 }
@@ -297,13 +263,9 @@ header {
     color: #f44336;
     background-color: #ffebee;
     padding: 1.2%;
-    /* 変更 */
     border-radius: 0.6vw;
-    /* 変更 */
     margin-bottom: 2%;
-    /* 変更 */
     border-left: 0.4vw solid #f44336;
-    /* 変更 */
 }
 
 /* 管理者バッジ */
@@ -311,33 +273,24 @@ header {
     background-color: #ff9800;
     color: white;
     padding: 0.3% 0.8%;
-    /* 変更 */
     border-radius: 0.4vw;
-    /* 変更 */
     font-size: 0.8em;
     margin-left: 0.5%;
-    /* 変更 */
 }
 
 /* ログインページ */
 .login-container {
     max-width: 40%;
-    /* 変更 */
     margin: 5% auto;
-    /* 変更 */
     padding: 3%;
-    /* 変更 */
     background-color: #fff;
     box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.1);
-    /* 変更 */
     border-radius: 0.8vw;
-    /* 変更 */
 }
 
 .login-container h1 {
     text-align: center;
     margin-bottom: 3%;
-    /* 変更 */
     color: #2c3e50;
 }
 
@@ -347,16 +300,13 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2.5%;
-    /* 変更 */
     flex-wrap: wrap;
     gap: 1.5%;
-    /* 変更 */
 }
 
 .sort-filter {
     display: flex;
     gap: 1.5%;
-    /* 変更 */
     align-items: center;
     flex-wrap: wrap;
 }
@@ -364,19 +314,14 @@ header {
 /* フィールドセット */
 fieldset {
     border: 0.1vw solid #ddd;
-    /* 変更 */
     border-radius: 0.6vw;
-    /* 変更 */
     padding: 1.5%;
-    /* 変更 */
     margin-bottom: 1.5%;
-    /* 変更 */
     background-color: #f9f9f9;
 }
 
 legend {
     padding: 0 0.8%;
-    /* 変更 */
     font-weight: bold;
     font-size: 0.95em;
     color: #444;
@@ -387,47 +332,37 @@ legend {
     font-size: 0.85em;
     color: #666;
     margin-top: 0.8%;
-    /* 変更 */
     font-style: italic;
 }
 
 /* 表作成エディタ */
 .table-editor {
     margin-top: 2%;
-    /* 変更 */
 }
 
 .table-editor-controls {
     margin-bottom: 1.5%;
-    /* 変更 */
     display: flex;
     gap: 1%;
-    /* 変更 */
     flex-wrap: wrap;
 }
 
 .table-editor-controls input {
     padding: 0.8%;
-    /* 変更 */
     border: 0.1vw solid #ddd;
-    /* 変更 */
     border-radius: 0.4vw;
-    /* 変更 */
 }
 
 .table-preview {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 2%;
-    /* 変更 */
 }
 
 .table-preview th,
 .table-preview td {
     border: 0.1vw solid #ddd;
-    /* 変更 */
     padding: 1%;
-    /* 変更 */
     text-align: left;
 }
 
@@ -440,15 +375,12 @@ legend {
     width: 100%;
     border-collapse: collapse;
     margin: 1.5% 0;
-    /* 変更 */
 }
 
 .data-table th,
 .data-table td {
     border: 0.1vw solid #ddd;
-    /* 変更 */
     padding: 1%;
-    /* 変更 */
     text-align: left;
 }
 
@@ -459,28 +391,29 @@ legend {
 /* 画像プレビュー用スタイル */
 .preview-image {
     max-width: 30vw;
-    /* 変更 */
     margin: 1% 0;
-    /* 変更 */
     border: 0.1vw solid #ddd;
-    /* 変更 */
     border-radius: 0.4vw;
-    /* 変更 */
     padding: 0.3%;
-    /* 変更 */
 }
 
 /* ファイルアイテムの余白調整 */
 .file-item {
     margin: 0.5% 0;
-    /* 変更 */
 }
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-    .container {
-        padding: 1.5%;
-        /* 変更 */
+    header {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .logout-btn {
+        margin-left: 0;
+        margin-top: 1%;
+        padding: 2% 4%;
+        font-size: 0.9em;
     }
 
     .thread-header h3 {
@@ -491,23 +424,31 @@ legend {
         font-size: 0.8em;
     }
 
-    .btn {
-        padding: 1.5% 3%;
-        /* 変更 */
+    .btn,
+    .delete-btn {
+        padding: 2% 4%;
+        font-size: 0.9em;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .table-editor-controls {
+        flex-direction: column;
+        align-items: stretch;
     }
 }
 
 @media (max-width: 480px) {
     .login-container {
         margin: 2% auto;
-        /* 変更 */
         padding: 2%;
-        /* 変更 */
     }
 
     .logout-btn {
         margin-top: 0.8%;
-        /* 変更 */
     }
 }
 
@@ -516,17 +457,12 @@ legend {
     background-color: #dff0d8;
     color: #3c763d;
     padding: 1.5%;
-    /* 変更 */
     margin-bottom: 2%;
-    /* 変更 */
     border-radius: 0.4vw;
-    /* 変更 */
     border-left: 0.4vw solid #3c763d;
-    /* 変更 */
 }
 
 /* アカウントフォーム調整 */
 .account-form .form-group {
     margin-bottom: 2.5%;
-    /* 変更 */
 }
