@@ -43,6 +43,7 @@ function save_uploaded_file($file, $comment_id)
   $file_name = $file['name'];
   $file_type = $file['type'];
   $file_size = $file['size'];
+  // ファイル内容をbase64エンコードして取得
   $file_content = base64_encode(file_get_contents($file['tmp_name']));
   $is_zip = false;
 
