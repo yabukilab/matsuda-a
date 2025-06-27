@@ -21,39 +21,34 @@ if (!$stmt->fetch()) {
 $error = '';
 $content = '';
 
-// ファイルアップロード処理用の新関数
 function save_uploaded_file_chunked($file, $comment_id)
 {
-    global $pdo;
+    global $pdo; // 追加
 
     $file_name = $file['name'];
     $file_type = $file['type'];
     $file_size = $file['size'];
 
-    // ファイルをチャンクで読み込み
-    $chunkSize = 2 * 1024 * 1024; // 2MBごと
-    $file_data = '';
-    $handle = fopen($file['tmp_name'], 'rb');
-
-    if (!$handle) {
-        throw new Exception("ファイルを開けません");
-    }
-
-    while (!feof($handle)) {
-        $chunk = fread($handle, $chunkSize);
-        if ($chunk === false) {
-            fclose($handle);
-            throw new Exception("ファイルの読み込み中にエラーが発生しました");
-        }
-        $file_data .= $chunk;
-    }
-
-    fclose($handle);
-
+    // メモリ制限付きで読み込み
+    $file_data = file_get_contents(
+        $file['tmp_name'],
+        false,
+        null,
+        0,
+        min(filesize($file['tmp_name']), MAX_FILE_SIZE)
+    );
     $base64_data = base64_encode($file_data);
 
+    // 修正箇所: false → 0
     $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_type, file_size, file_data, is_zip) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$comment_id, $file_name, $file_type, $file_size, $base64_data, false]);
+    $stmt->execute([
+        $comment_id,
+        $file_name,
+        $file_type,
+        $file_size,
+        $base64_data,
+        0 // ここを 0 に変更
+    ]);
 
     return $pdo->lastInsertId();
 }

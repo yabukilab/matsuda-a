@@ -36,33 +36,26 @@ function format_size($bytes)
   return round($bytes, 2) . ' ' . $units[$pow];
 }
 
-function save_uploaded_file_chunked($file, $comment_id)
+function save_uploaded_file($file, $comment_id)
 {
-  global $pdo; // 追加
+  global $pdo;
 
   $file_name = $file['name'];
   $file_type = $file['type'];
   $file_size = $file['size'];
+  $file_content = base64_encode(file_get_contents($file['tmp_name']));
 
-  // メモリ制限付きで読み込み
-  $file_data = file_get_contents(
-    $file['tmp_name'],
-    false,
-    null,
-    0,
-    min(filesize($file['tmp_name']), MAX_FILE_SIZE)
-  );
-  $base64_data = base64_encode($file_data);
+  // 拡張子やファイル内容からzipファイルかどうかを判定したい場合はここで実装
+  $is_zip = 0; // ← 修正ポイント：falseや''ではなく明示的な0（MySQLのBOOLEAN/TINYINT対応）
 
-  // 修正箇所: false → 0
   $stmt = $pdo->prepare("INSERT INTO uploaded_files (comment_id, file_name, file_type, file_size, file_data, is_zip) VALUES (?, ?, ?, ?, ?, ?)");
   $stmt->execute([
     $comment_id,
     $file_name,
     $file_type,
     $file_size,
-    $base64_data,
-    0 // ここを 0 に変更
+    $file_content,
+    $is_zip
   ]);
 
   return $pdo->lastInsertId();
