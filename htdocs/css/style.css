@@ -520,6 +520,44 @@ legend {
     color: transparent;
 }
 
+/* ログインボタンのスタイルを強調 */
+.login-container .btn {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 6px 15px rgba(44, 95, 138, 0.3);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.login-container .btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(44, 95, 138, 0.4);
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+}
+
+.login-container .btn::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20px;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(25deg);
+    transition: all 0.7s;
+}
+
+.login-container .btn:hover::after {
+    left: 120%;
+}
+
 /* ラジオボタン */
 input[type="radio"] {
     margin-right: 8px;
@@ -586,6 +624,11 @@ input[type="radio"] {
         padding: 30px 25px;
     }
 
+    .login-container .btn {
+        padding: 14px 28px;
+        font-size: 1.05rem;
+    }
+
     .table-editor-controls {
         flex-direction: column;
         gap: 15px;
@@ -625,6 +668,11 @@ input[type="radio"] {
 
     .login-container {
         padding: 25px 20px;
+    }
+
+    .login-container .btn {
+        padding: 12px 24px;
+        font-size: 1rem;
     }
 
     .scroll-to-bottom {
