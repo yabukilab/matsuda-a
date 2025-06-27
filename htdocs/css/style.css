@@ -78,9 +78,11 @@ header {
 
 .logout-btn {
     background-color: #ebebeb;
-    margin-left: 1%;
-    padding: 0.8% 1.5%;
-    box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);
+    /* 明るいグレーに変更 */
+    margin-left: 10px;
+    padding: 8px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* 影を追加 */
 }
 
 .logout-btn:hover {
