@@ -2,9 +2,6 @@
 require_once 'includes/config.php';
 require_once 'includes/functions.php';
 
-// セッション開始
-session_start();
-
 // ログイン処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $student_id = preg_replace('/[^0-9]/', '', $_POST['student_id']);
