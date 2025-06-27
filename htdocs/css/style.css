@@ -209,9 +209,10 @@ legend {
     flex-direction: column;
 }
 
+/* ホバーエフェクトを無効化 */
 .thread-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transform: none;
+    box-shadow: var(--shadow);
 }
 
 .thread-header {
