@@ -14,7 +14,6 @@
     --border: #dce6f0;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     --paper: #f8f8f8;
-    /* 対象.txtから追加 */
 }
 
 * {
@@ -42,9 +41,7 @@ body {
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.5);
     position: relative;
-    /* 対象.txtから追加 */
     overflow: hidden;
-    /* 対象.txtから追加 */
 }
 
 /* タイプライター風ヘッダー追加 */
@@ -57,12 +54,10 @@ header {
     padding-bottom: 20px;
     border-bottom: 2px solid var(--border);
     position: relative;
-    /* 対象.txtから追加 */
 }
 
 header::before {
     content: ">";
-    /* 対象.txtのコンソール風要素 */
     position: absolute;
     left: -20px;
     top: 5px;
@@ -87,12 +82,10 @@ h1 {
     color: transparent;
     padding-bottom: 10px;
     position: relative;
-    /* 対象.txtから追加 */
 }
 
 h1::after {
     content: "";
-    /* 対象.txtの点線下線 */
     position: absolute;
     bottom: 0;
     left: 0;
@@ -117,9 +110,7 @@ h1::after {
     gap: 15px;
     flex-wrap: wrap;
     border: 1px solid var(--border);
-    /* 対象.txtから追加 */
     font-family: 'Courier New', Courier, monospace;
-    /* 対象.txtから追加 */
 }
 
 /* ボタン */
@@ -203,7 +194,6 @@ h1::after {
     transition: all 0.3s;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
     font-family: 'Courier New', Courier, monospace;
-    /* 対象.txtから追加 */
 }
 
 .form-group input:focus,
@@ -213,7 +203,6 @@ h1::after {
     outline: none;
     box-shadow: 0 0 0 3px rgba(77, 161, 205, 0.2);
     background: #ffffe0;
-    /* 対象.txtから追加 */
 }
 
 .form-group textarea {
@@ -252,7 +241,6 @@ legend {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border);
-    /* 対象.txtから追加 */
 }
 
 .thread-item:hover {
@@ -321,12 +309,10 @@ legend {
     box-shadow: var(--shadow);
     border-top: 3px solid var(--light);
     position: relative;
-    /* 対象.txtから追加 */
 }
 
 .comment-item::before {
     content: "//";
-    /* 対象.txtのコンソール風要素 */
     position: absolute;
     left: 5px;
     top: 5px;
@@ -361,9 +347,7 @@ legend {
     line-height: 1.7;
     font-size: 1.05rem;
     white-space: pre-wrap;
-    /* 対象.txtから追加 */
     font-family: 'Courier New', Courier, monospace;
-    /* 対象.txtから追加 */
 }
 
 .comment-content table {
@@ -416,16 +400,12 @@ legend {
     background: var(--light);
     border-radius: 10px;
     display: flex;
-    /* 対象.txtから追加 */
     align-items: center;
-    /* 対象.txtから追加 */
     gap: 10px;
-    /* 対象.txtから追加 */
 }
 
 .file-item::before {
     content: "📎";
-    /* 対象.txtのアイコン */
     margin-right: 5px;
 }
 
@@ -460,9 +440,7 @@ legend {
     border-left: 3px solid var(--danger);
     font-weight: 500;
     border: 1px solid var(--border);
-    /* 対象.txtから追加 */
     font-family: 'Courier New', Courier, monospace;
-    /* 対象.txtから追加 */
 }
 
 .success {
@@ -474,9 +452,7 @@ legend {
     border-left: 3px solid var(--success);
     font-weight: 500;
     border: 1px solid var(--border);
-    /* 対象.txtから追加 */
     font-family: 'Courier New', Courier, monospace;
-    /* 対象.txtから追加 */
 }
 
 /* 管理者バッジを控えめに */
@@ -663,7 +639,7 @@ input[type="radio"] {
     margin-right: 8px;
 }
 
-/* ページ区切り線（対象.txtから追加） */
+/* ページ区切り線 */
 .container::after {
     content: "";
     position: absolute;
@@ -692,38 +668,45 @@ input[type="radio"] {
 
     header {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
+        align-items: center;
+        gap: 15px;
+    }
+
+    header h1 {
+        text-align: center;
+        width: 100%;
     }
 
     .user-info {
         width: 100%;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 12px;
+        justify-content: center;
+        text-align: center;
     }
 
     .controls {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 15px;
     }
 
     .sort-filter {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .thread-meta,
     .comment-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 10px;
     }
 
     .thread-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .scroll-to-bottom {
