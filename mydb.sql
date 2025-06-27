@@ -86,7 +86,7 @@ CREATE TABLE `uploaded_files` (
   `file_name` varchar(255) NOT NULL,
   `file_type` varchar(50) DEFAULT NULL,
   `file_size` int(11) DEFAULT 0,
-  `file_data` text NOT NULL,
+  `file_data` longtext NOT NULL,
   `is_zip` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`file_id`),
@@ -139,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-27  2:02:04
+-- Dump completed on 2025-06-27 14:57:53
