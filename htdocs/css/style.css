@@ -6,15 +6,17 @@ body {
     background-color: #f0f8ff;
     margin: 0;
     padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 90%;
+    max-width: 95%;
     margin: 0 auto;
-    padding: 1.5%;
+    padding: 15px;
     background-color: #fff;
-    box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.1);
-    border-radius: 0.8vw;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 /* ヘッダー */
@@ -22,115 +24,565 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.5%;
-    padding-bottom: 1.5%;
-    border-bottom: 0.2vw solid #e0e0e0;
-}
-
-/* ユーザー名＋ログアウトボタンを強制的に横並び */
-.user-controls {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 0.8em;
-    white-space: nowrap;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+    flex-wrap: wrap;
 }
 
 .user-info {
+    text-align: right;
     font-size: 0.9em;
     color: #555;
+    width: 100%;
+    margin-top: 15px;
 }
 
-/* ボタン共通 */
+/* ボタン */
 .btn {
-    display: inline-block;
-    padding: 1% 1.8%;
+    display: block;
+    width: 100%;
+    padding: 12px 0;
     background-color: #4CAF50;
     color: white;
     text-decoration: none;
-    border-radius: 0.6vw;
+    border-radius: 6px;
     border: none;
     cursor: pointer;
-    font-size: 0.95em;
-    margin: 0.5% 0;
+    font-size: 1em;
+    margin: 8px 0;
     transition: background-color 0.3s;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .btn:hover {
     background-color: #45a049;
 }
 
-.logout-btn {
-    background-color: #ebebeb;
-    padding: 0.8% 1.5%;
-    box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);
-}
-
-.logout-btn:hover {
-    background-color: #666666;
-}
-
-/* 削除ボタンを横並びに */
 .delete-btn {
-    display: inline-block;
     background-color: #f44336;
     color: white;
-    padding: 0.5% 1.2%;
-    border-radius: 0.4vw;
+    padding: 8px 0;
+    border-radius: 4px;
     text-decoration: none;
-    font-size: 0.85em;
-    margin-left: 1%;
-    white-space: nowrap;
+    font-size: 0.95em;
+    width: 100%;
+    display: block;
+    margin: 8px 0;
+    text-align: center;
 }
 
 .delete-btn:hover {
     background-color: #d32f2f;
 }
 
-/* インラインフォーム */
+.logout-btn {
+    background-color: #ebebeb;
+    margin: 8px 0;
+    padding: 12px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.logout-btn:hover {
+    background-color: #666666;
+}
+
+/* フォーム */
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    transition: border 0.3s;
+    font-size: 1em;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
 .inline-form {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+}
+
+/* スレッド一覧 */
+.thread-list {
+    margin-top: 25px;
+    width: 100%;
+}
+
+.thread-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 6px;
+    border-left: 5px solid #4CAF50;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.thread-item:hover {
+    transform: translateY(-2px);
+}
+
+.thread-header {
+    display: block;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.thread-header h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 1.2em;
+}
+
+.thread-header h3 a {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: block;
+    width: 100%;
+}
+
+.thread-header h3 a:hover {
+    color: #4CAF50;
+}
+
+.category {
+    background-color: #e3f2fd;
+    color: #1a237e;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: 600;
     display: inline-block;
-    margin-left: 1%;
-    vertical-align: middle;
+    margin-top: 10px;
 }
 
-/* フォーム関連省略部分はそのまま */
+.thread-meta {
+    font-size: 0.95em;
+    color: #666;
+    display: block;
+    width: 100%;
+}
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-end;
+/* コメント */
+.comment-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 6px;
+    border-left: 5px solid #2196F3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.comment-header {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.95em;
+    width: 100%;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.comment-date {
+    color: #757575;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.comment-content {
+    margin: 15px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.6;
+    font-size: 1.1em;
+    width: 100%;
+}
+
+.scroll-to-bottom {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1.5em;
+}
+
+.scroll-to-bottom:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.comment-file a {
+    color: #2196F3;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: block;
+    margin: 10px 0;
+}
+
+.comment-file a:hover {
+    color: #0d8bf2;
+    text-decoration: underline;
+}
+
+/* エラーメッセージ */
+.error {
+    color: #f44336;
+    background-color: #ffebee;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #f44336;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+/* 管理者バッジ */
+.admin-badge {
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    margin: 8px 0;
+    display: inline-block;
+}
+
+/* ログインページ */
+.login-container {
+    max-width: 95%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-size: 1.8em;
+}
+
+/* コントロールパネル */
+.controls {
+    display: block;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.sort-filter {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* フィールドセット */
+fieldset {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+legend {
+    padding: 0 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #444;
+}
+
+/* ヒントテキスト */
+.hint {
+    font-size: 0.95em;
+    color: #666;
+    margin-top: 10px;
+    font-style: italic;
+    display: block;
+}
+
+/* 表作成エディタ */
+.table-editor {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.table-editor-controls {
+    margin-bottom: 15px;
+    display: block;
+    width: 100%;
+}
+
+.table-editor-controls>div {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.table-editor-controls input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.table-preview {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+}
+
+.table-preview th,
+.table-preview td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.table-preview th {
+    background-color: #f2f2f2;
+}
+
+/* データテーブル */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.95em;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.data-table th {
+    background-color: #f2f2f2;
+}
+
+/* 画像プレビュー用スタイル */
+.preview-image {
+    max-width: 100%;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 3px;
+    height: auto;
+}
+
+/* ファイルアイテムの余白調整 */
+.file-item {
+    margin: 15px 0;
+    width: 100%;
+}
+
+/* 成功メッセージスタイル */
+.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border-left: 4px solid #3c763d;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+/* アカウントフォーム調整 */
+.account-form .form-group {
+    margin-bottom: 25px;
+}
+
+/* レスポンシブデザイン */
+@media (min-width: 768px) {
+    .container {
+        max-width: 90%;
     }
 
-    .user-controls {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 0.5em;
+    .user-info {
+        width: auto;
+        text-align: right;
+        margin-top: 0;
     }
 
-    .logout-btn {
-        padding: 2% 4%;
-        font-size: 0.9em;
-    }
-
+    .btn,
+    .logout-btn,
     .delete-btn {
-        padding: 2% 4%;
-        font-size: 0.85em;
+        display: inline-block;
+        width: auto;
+        padding: 10px 18px;
+        margin: 0 5px;
     }
 
-    .btn {
-        padding: 2% 4%;
-        font-size: 0.9em;
+    .thread-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .thread-meta {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .sort-filter {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .table-editor-controls {
+        display: flex;
+        gap: 15px;
+    }
+
+    .table-editor-controls>div {
+        width: auto;
+        margin-bottom: 0;
     }
 }
 
-@media (max-width: 480px) {
-    .logout-btn {
-        margin-top: 0.8%;
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1000px;
     }
 
-    .user-controls {
-        flex-direction: column;
-        align-items: flex-end;
+    .btn,
+    .logout-btn,
+    .delete-btn {
+        padding: 10px 20px;
     }
+}
+
+/* タッチ操作を考慮したスタイル */
+input,
+textarea,
+select,
+button {
+    font-size: 16px;
+    /* スマホでのズームを防ぐ */
+}
+
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
+    /* タップ時のハイライトを無効化 */
+    touch-action: manipulation;
+    /* ダブルタップズームを防止 */
+}
+
+/* フォーム要素の拡大率設定 */
+@media (max-width: 480px) {
+
+    input,
+    textarea,
+    select {
+        font-size: 1.1em;
+        padding: 14px;
+    }
+
+    button,
+    .btn,
+    .logout-btn,
+    .delete-btn {
+        font-size: 1.1em;
+        padding: 14px 0;
+    }
+}
+
+/* スクロールバーのスタイル調整 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
