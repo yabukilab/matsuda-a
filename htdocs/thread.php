@@ -148,7 +148,7 @@ unset($comment);
                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                     <button type="submit" class="btn">投稿</button>
                     <a href="upload_file.php?thread_id=<?= h($thread_id) ?>" class="btn">
-                        画像を添付する
+                        ファイルアップロード
                     </a>
                     <a href="table_editor.php?thread_id=<?= h($thread_id) ?>" class="btn">
                         表を作成する
