@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($title)) {
         $error = "スレッド名を入力してください";
     } elseif (strlen($title) > 100) {
-        $error = "スレッド名は100文字以内で入力してください";
+        $error = "スレッド名が長すぎます（全角34文字or半角100文字までです）";
     } else {
         // スレッド作成
         $stmt = $pdo->prepare("INSERT INTO threads (title, category, created_by) VALUES (?, ?, ?)");
