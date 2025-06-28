@@ -82,6 +82,10 @@ h1 {
     color: transparent;
     padding-bottom: 10px;
     position: relative;
+    /* 長いスレッド名の折り返し追加 */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 90%;
 }
 
 h1::after {
@@ -252,7 +256,8 @@ legend {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    /* 上部揃えに変更 */
     margin-bottom: 15px;
     gap: 15px;
 }
@@ -260,12 +265,18 @@ legend {
 .thread-header h3 {
     margin: 0;
     font-size: 1.4rem;
+    /* 長いスレッド名の折り返し追加 */
+    width: 100%;
 }
 
 .thread-header h3 a {
     color: var(--dark);
     text-decoration: none;
     transition: color 0.3s;
+    /* 長いスレッド名の折り返し追加 */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    display: block;
 }
 
 .thread-header h3 a:hover {
@@ -280,6 +291,9 @@ legend {
     font-weight: 600;
     font-size: 0.85rem;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    /* カテゴリ表示の調整 */
+    flex-shrink: 0;
+    margin-top: 5px;
 }
 
 .thread-meta {
