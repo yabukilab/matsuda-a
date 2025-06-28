@@ -169,8 +169,32 @@ unset($comment);
     let isPollingActive = true;
     const pollingInterval = 5000; // 5秒ごとにチェック
 
+    // 設定値
+    const FOCUS_OUT_DELAY = 10000; // フォーカスが外れてから10秒後に再開
+    const INPUT_IDLE_TIMEOUT = 30000; // 30秒間入力がない場合に再開
+
+    // タイマー変数
+    let focusOutTimer = null;
+    let inputIdleTimer = null;
+    let lastInputTime = 0;
+
+    // テキストエリア要素を取得
+    const commentTextarea = document.querySelector('textarea[name="content"]');
+
     // 新しいコメントをチェックする関数
     function checkForNewComments() {
+        // テキストエリアにフォーカスがある場合はポーリングをスキップ
+        if (commentTextarea && document.activeElement === commentTextarea) {
+            // 入力アイドル状態チェック
+            const now = Date.now();
+            if (now - lastInputTime > INPUT_IDLE_TIMEOUT) {
+                restartPolling();
+            } else {
+                setTimeout(checkForNewComments, pollingInterval);
+            }
+            return;
+        }
+
         if (!isPollingActive) return;
 
         $.ajax({
@@ -210,6 +234,26 @@ unset($comment);
                 setTimeout(checkForNewComments, pollingInterval);
             }
         });
+    }
+
+    // ポーリングを再開する関数
+    function restartPolling() {
+        // タイマーをクリア
+        clearTimeout(focusOutTimer);
+        clearTimeout(inputIdleTimer);
+
+        // ポーリング状態をアクティブに
+        isPollingActive = true;
+
+        // 即座にチェック
+        checkForNewComments();
+    }
+
+    // ポーリングを一時停止する関数
+    function pausePolling() {
+        isPollingActive = false;
+        clearTimeout(focusOutTimer);
+        clearTimeout(inputIdleTimer);
     }
 
     // コメント要素を作成する関数
@@ -335,6 +379,33 @@ unset($comment);
                     block: 'start'
                 });
             }
+        }
+
+        // テキストエリアのイベントリスナー設定
+        if (commentTextarea) {
+            // フォーカス取得時
+            commentTextarea.addEventListener('focus', function() {
+                pausePolling();
+                lastInputTime = Date.now();
+
+                // アイドル状態チェック用タイマー開始
+                inputIdleTimer = setTimeout(restartPolling, INPUT_IDLE_TIMEOUT);
+            });
+
+            // フォーカス喪失時
+            commentTextarea.addEventListener('blur', function() {
+                // 10秒後に再開
+                focusOutTimer = setTimeout(restartPolling, FOCUS_OUT_DELAY);
+            });
+
+            // 入力イベント監視
+            commentTextarea.addEventListener('input', function() {
+                lastInputTime = Date.now();
+
+                // アイドルタイマーをリセット
+                clearTimeout(inputIdleTimer);
+                inputIdleTimer = setTimeout(restartPolling, INPUT_IDLE_TIMEOUT);
+            });
         }
 
         // ポーリング開始
