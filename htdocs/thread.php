@@ -196,6 +196,10 @@ unset($comment);
 
     // 新しいコメントをチェックする関数
     function checkForNewComments() {
+        // スクロール位置を保存
+        const scrollTopBefore = $(window).scrollTop();
+        const scrollHeightBefore = $(document).height();
+
         // テキストエリアにフォーカスがある場合はポーリングをスキップ
         if (commentTextarea && document.activeElement === commentTextarea) {
             // 入力アイドル状態チェック
@@ -223,6 +227,9 @@ unset($comment);
                     // 「コメントがありません」メッセージを削除
                     $('#no-comments-message').remove();
 
+                    // 追加前のスクロール位置が最下部付近か判定
+                    const wasNearBottom = isNearBottom();
+
                     // 新しいコメントを追加
                     newComments.forEach(comment => {
                         const commentElement = createCommentElement(comment);
@@ -237,6 +244,19 @@ unset($comment);
 
                     // 新しいコメントがあることを通知
                     showNewCommentsNotification(newComments.length);
+
+                    // 追加後のドキュメント高さ
+                    const scrollHeightAfter = $(document).height();
+
+                    // スクロール位置を調整
+                    if (wasNearBottom) {
+                        // 元々最下部付近にいた場合は新しい最下部にスクロール
+                        $('html, body').scrollTop(scrollHeightAfter);
+                    } else {
+                        // それ以外は元のスクロール位置を維持（高さの変化分を加算）
+                        const scrollTopAfter = scrollTopBefore + (scrollHeightAfter - scrollHeightBefore);
+                        $('html, body').scrollTop(scrollTopAfter);
+                    }
                 }
             },
             error: function(xhr, status, error) {
@@ -247,6 +267,15 @@ unset($comment);
                 setTimeout(checkForNewComments, pollingInterval);
             }
         });
+    }
+
+    // 最下部付近にいるか判定
+    function isNearBottom(threshold = 100) {
+        const scrollTop = $(window).scrollTop();
+        const windowHeight = $(window).height();
+        const documentHeight = $(document).height();
+
+        return (scrollTop + windowHeight) >= (documentHeight - threshold);
     }
 
     // ポーリングを再開する関数
