@@ -208,7 +208,7 @@ include 'includes/header.php';
             <input type="file" name="files[]" multiple accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.doc,.docx,.xls,.xlsx,.zip,.txt">
             <p class="hint">
                 対応形式: JPG, PNG, GIF, WebP, PDF, Word, Excel, ZIP, TXT（EXE, PHP等危険な形式はブロックされます）<br>
-                最大ファイルサイズ: <?= format_size(MAX_FILE_SIZE) ?>
+                最大ファイルサイズ: <?= format_size(MAX_FILE_SIZE) ?>（現在、2MBまでアップロードできます）
             </p>
         </div>
 
