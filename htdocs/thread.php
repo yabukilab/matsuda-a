@@ -118,7 +118,7 @@ unset($comment);
                                     <?php
                                     $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
                                     $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']);
-                                    $isPdf = $ext === 'pdf';
+                                    $isPDF = ($ext === 'pdf'); // PDF判定を追加
                                     ?>
                                     <div class="file-item">
                                         <?php if ($isImage): ?>
@@ -136,13 +136,12 @@ unset($comment);
                                                     <?= h($file['file_name']) ?> (ダウンロード)
                                                 </a>
                                             </div>
-                                        <?php elseif ($isPdf): ?>
-                                            <!-- PDFプレビュー追加 -->
+                                        <?php elseif ($isPDF): ?>
+                                            <!-- PDFプレビュー用のリンクを追加 -->
                                             <div>
-                                                <embed src="data:application/pdf;base64,<?= $file['file_data'] ?>"
-                                                    type="application/pdf"
-                                                    width="100%"
-                                                    height="600px" />
+                                                <a href="preview_pdf.php?file_id=<?= $file['file_id'] ?>" target="_blank">
+                                                    PDFをプレビュー
+                                                </a>
                                             </div>
                                             <div>
                                                 <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
@@ -322,7 +321,7 @@ unset($comment);
             comment.files.forEach(file => {
                 const ext = file.file_name.split('.').pop().toLowerCase();
                 const isImage = ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext);
-                const isPdf = ext === 'pdf';
+                const isPDF = (ext === 'pdf'); // PDF判定を追加
 
                 if (isImage) {
                     filesHtml += `
@@ -341,14 +340,14 @@ unset($comment);
                                 </a>
                             </div>
                         </div>`;
-                } else if (isPdf) {
+                } else if (isPDF) {
+                    // PDFプレビュー用リンクを追加
                     filesHtml += `
                         <div class="file-item">
                             <div>
-                                <embed src="data:application/pdf;base64,${file.file_data}" 
-                                       type="application/pdf" 
-                                       width="100%" 
-                                       height="600px" />
+                                <a href="preview_pdf.php?file_id=${file.file_id}" target="_blank">
+                                    PDFをプレビュー
+                                </a>
                             </div>
                             <div>
                                 <a href="download.php?file_id=${file.file_id}" download="${escapeHtml(file.file_name)}">
