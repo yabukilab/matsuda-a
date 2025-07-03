@@ -113,13 +113,14 @@ unset($comment);
 
                         <?php if (!empty($comment['files'])): ?>
                             <div class="comment-files">
-                                <strong>添付画像:</strong>
+                                <strong>添付ファイル:</strong>
                                 <?php foreach ($comment['files'] as $file): ?>
+                                    <?php
+                                    $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
+                                    $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+                                    $isPdf = $ext === 'pdf';
+                                    ?>
                                     <div class="file-item">
-                                        <?php
-                                        $ext = strtolower(pathinfo($file['file_name'], PATHINFO_EXTENSION));
-                                        $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']);
-                                        ?>
                                         <?php if ($isImage): ?>
                                             <div>
                                                 <a href="download.php?file_id=<?= $file['file_id'] ?>&preview=1" target="_blank">
@@ -129,6 +130,19 @@ unset($comment);
                                                         alt="画像プレビュー"
                                                         style="max-width: 400px; max-height: 300px; display: block;">
                                                 </a>
+                                            </div>
+                                            <div>
+                                                <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
+                                                    <?= h($file['file_name']) ?> (ダウンロード)
+                                                </a>
+                                            </div>
+                                        <?php elseif ($isPdf): ?>
+                                            <!-- PDFプレビュー追加 -->
+                                            <div>
+                                                <embed src="data:application/pdf;base64,<?= $file['file_data'] ?>"
+                                                    type="application/pdf"
+                                                    width="100%"
+                                                    height="600px" />
                                             </div>
                                             <div>
                                                 <a href="download.php?file_id=<?= $file['file_id'] ?>" download="<?= h($file['file_name']) ?>">
@@ -303,11 +317,12 @@ unset($comment);
         let filesHtml = '';
 
         if (comment.files && comment.files.length > 0) {
-            filesHtml += '<div class="comment-files"><strong>添付画像:</strong>';
+            filesHtml += '<div class="comment-files"><strong>添付ファイル:</strong>';
 
             comment.files.forEach(file => {
                 const ext = file.file_name.split('.').pop().toLowerCase();
                 const isImage = ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext);
+                const isPdf = ext === 'pdf';
 
                 if (isImage) {
                     filesHtml += `
@@ -319,6 +334,21 @@ unset($comment);
                                          alt="画像プレビュー"
                                          style="max-width: 400px; max-height: 300px; display: block;">
                                 </a>
+                            </div>
+                            <div>
+                                <a href="download.php?file_id=${file.file_id}" download="${escapeHtml(file.file_name)}">
+                                    ${escapeHtml(file.file_name)} (ダウンロード)
+                                </a>
+                            </div>
+                        </div>`;
+                } else if (isPdf) {
+                    filesHtml += `
+                        <div class="file-item">
+                            <div>
+                                <embed src="data:application/pdf;base64,${file.file_data}" 
+                                       type="application/pdf" 
+                                       width="100%" 
+                                       height="600px" />
                             </div>
                             <div>
                                 <a href="download.php?file_id=${file.file_id}" download="${escapeHtml(file.file_name)}">
